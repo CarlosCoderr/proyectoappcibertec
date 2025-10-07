@@ -9,7 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.app.balance.enity.Usuario
 import com.app.balance.repo.UsuariosRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText

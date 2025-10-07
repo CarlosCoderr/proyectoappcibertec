@@ -1,4 +1,4 @@
-package com.app.balance.enity
+package com.app.balance.entity
 
 data class Usuario(
     var codigo :Int,

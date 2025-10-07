@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Añadir transacciones"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Tabs GASTOS / INGRESOS -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/balance"
+            app:tabIndicatorHeight="2dp"
+            app:tabTextColor="@color/black"
+            app:tabSelectedTextColor="@color/black">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabGastos"
+                android:text="GASTOS" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabIngresos"
+                android:text="INGRESOS" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <!-- Monto PEN (caja pequeña) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                app:suffixText="PEN"
+                app:suffixTextColor="@color/black"
+                app:boxStrokeColor="@color/balance">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMonto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:text="0"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Categorías -->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categorías"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!--  3x2 de círculos con etiqueta -->
+        <GridLayout
+            android:id="@+id/gridCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:useDefaultMargins="true"
+            android:alignmentMode="alignMargins">
+
+            <!-- Item de categoría , repite 6 veces -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_circle"
+                    android:contentDescription="@string/app_name"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CATEGORÍA"
+                    android:textSize="12sp"
+                    android:layout_marginTop="6dp"/>
+            </LinearLayout>
+
+            <!-- Duplica/inyecta más items aquí -->
+        </GridLayout>
+
+        <!-- Fecha (chips como en tu mock) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipsFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHoy"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:text="6/10\nHoy"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAyer"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:text="5/10\nAyer"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAntes"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:text="5/10\nHace dos días"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOtro"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:text=""/>
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+        <!-- Comentario con contador -->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comentario"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            app:counterMaxLength="500"
+            android:layout_marginBottom="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etComentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese el comentario"
+                android:inputType="textCapSentences|textMultiLine"
+                android:minLines="2"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAnadir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AÑADIR"
+            android:textColor="@color/negro"
+            app:backgroundTint="@color/balance"
+            android:textAllCaps="true"
+            android:insetTop="12dp"
+            android:insetBottom="12dp"/>
+    </LinearLayout>
+</ScrollView>
+

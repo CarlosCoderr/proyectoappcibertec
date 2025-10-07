@@ -1,4 +1,4 @@
-package com.app.balance.enity
+package com.app.balance.entity
 
 data class CountryCode(
     val name: String,

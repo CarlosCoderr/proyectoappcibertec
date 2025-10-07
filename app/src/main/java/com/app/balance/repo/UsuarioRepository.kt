@@ -1,6 +1,6 @@
 package com.app.balance.repo
 
-import com.app.balance.enity.Usuario
+import com.app.balance.entity.Usuario
 
 object UsuariosRepository {
     private val listaUsuarios = mutableListOf(

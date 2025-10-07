@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:label="Iniciar sesión">
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/registerFragment"/>
+        <action
+            android:id="@+id/action_login_to_currency"
+            app:destination="@id/currencyFragment"/>
+        <action
+            android:id="@+id/action_login_to_main"
+            app:destination="@id/main_graph"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:label="Registro">
+        <action
+            android:id="@+id/action_register_to_currency"
+            app:destination="@id/currencyFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/currencyFragment"
+        android:label="Divisa">
+        <action
+            android:id="@+id/action_currency_to_initialBalance"
+            app:destination="@id/initialBalanceFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/initialBalanceFragment"
+        android:label="Saldo inicial">
+        <action
+            android:id="@+id/action_initialBalance_to_main"
+            app:destination="@id/main_graph"/>
+    </fragment>
+
+
+    <!-- ====== FLUJO PRINCIPAL (con bottom bar) ====== -->
+
+    <navigation
+        android:id="@+id/main_graph"
+        app:startDestination="@id/dashboardFragment">
+
+        <fragment
+            android:id="@+id/dashboardFragment"
+            android:label="Balance">
+            <action
+                android:id="@+id/action_dashboard_to_add"
+                app:destination="@id/addTransactionBottomSheet"/>
+            <action
+                android:id="@+id/action_dashboard_to_categories"
+                app:destination="@id/categoriesFragment"/>
+        </fragment>
+
+        <fragment
+            android:id="@+id/transactionsFragment"
+            android:label="Transacciones">
+            <action
+                android:id="@+id/action_transactions_to_add"
+                app:destination="@id/addTransactionBottomSheet"/>
+        </fragment>
+
+        <fragment
+            android:id="@+id/profileFragment"
+            android:label="Perfil">
+            <action
+                android:id="@+id/action_profile_to_categories"
+                app:destination="@id/categoriesFragment"/>
+        </fragment>
+
+        <dialog
+            android:id="@+id/addTransactionBottomSheet"
+            android:label="Añadir transacción"
+            app:dialogTheme="@style/ThemeOverlay.Material3.BottomSheetDialog" />
+
+        <fragment
+            android:id="@+id/categoriesFragment"
+            android:label="Categorías" />
+    </navigation>
+</navigation>

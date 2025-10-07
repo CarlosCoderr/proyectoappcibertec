@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.app.balance.adapters.CountryCodeAdapter
-import com.app.balance.enity.CountryCode
-import com.app.balance.enity.Usuario
+import com.app.balance.entity.CountryCode
+import com.app.balance.entity.Usuario
 import com.app.balance.repo.UsuariosRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -24,7 +24,6 @@ import org.json.JSONArray
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Calendar
-import java.util.regex.Pattern
 
 class RegistroActivity : AppCompatActivity() {
 

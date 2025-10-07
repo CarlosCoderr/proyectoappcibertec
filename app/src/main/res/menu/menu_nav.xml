@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_welcome"
+        android:icon="@drawable/ic_casa"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_billetera"
+        android:title="Balance" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_persona"
+        android:title="Perfil" />
+</menu>
