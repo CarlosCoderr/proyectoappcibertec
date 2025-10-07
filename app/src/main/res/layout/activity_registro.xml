@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@color/white"
+    tools:context=".RegistroActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balance+"
+                android:textSize="39sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                style="@style/textBalance"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Te damos la bienvenida a Balance+"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                style="@style/textBalance"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="36dp"
+                >
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNombre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    app:boxCornerRadiusBottomEnd="0dp"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusBottomStart="0dp"
+                    app:boxCornerRadiusTopStart="0dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        style="@style/textBalance"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilApellido"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido"
+                    app:boxCornerRadiusBottomEnd="0dp"
+                    android:layout_weight="1"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusBottomStart="0dp"
+                    app:boxCornerRadiusTopStart="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietApellido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        style="@style/textBalance"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="27dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha de nacimiento"
+                android:textStyle="bold"
+                style="@style/textBalance"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="6dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilAnio"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    app:boxCornerRadiusBottomEnd="0dp"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusBottomStart="0dp"
+                    app:boxCornerRadiusTopStart="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:hint="Año">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietAnio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        style="@style/textBalance"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilMes"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:hint="Mes"
+                    app:boxCornerRadiusBottomEnd="0dp"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusBottomStart="0dp"
+                    app:boxCornerRadiusTopStart="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietMes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        style="@style/textBalance"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDia"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="Dia"
+                    app:boxCornerRadiusBottomEnd="0dp"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusBottomStart="0dp"
+                    app:boxCornerRadiusTopStart="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietDia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        style="@style/textBalance"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="23dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Género"
+                android:textStyle="bold"
+                style="@style/textBalance"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="16dp">
+
+                <CheckBox
+                    android:id="@+id/chkHombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvHombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hombre"
+                    android:textSize="13sp"
+                    style="@style/textBalance"/>
+
+                <CheckBox
+                    android:id="@+id/chkMujer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"/>
+
+                <TextView
+                    android:id="@+id/tvMujer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mujer"
+                    android:textSize="13sp"
+                    style="@style/textBalance"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="23dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecciona tu país"
+                android:textStyle="bold"
+                style="@style/textBalance"/>
+
+            <Spinner
+                android:id="@+id/spinnerCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:minHeight="48dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Celular"
+                android:layout_marginTop="16dp"
+                app:prefixText="+51"
+                app:boxCornerRadiusBottomEnd="0dp"
+                app:boxCornerRadiusTopEnd="0dp"
+                app:boxCornerRadiusBottomStart="0dp"
+                app:boxCornerRadiusTopStart="0dp"
+                style="@style/textBalance">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietCelular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo"
+                android:layout_marginTop="16dp"
+                app:boxCornerRadiusBottomEnd="0dp"
+                app:boxCornerRadiusTopEnd="0dp"
+                app:boxCornerRadiusBottomStart="0dp"
+                app:boxCornerRadiusTopStart="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textEmailAddress"
+                    style="@style/textBalance"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilClave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:layout_marginTop="16dp"
+                app:boxCornerRadiusBottomEnd="0dp"
+                app:boxCornerRadiusTopEnd="0dp"
+                app:boxCornerRadiusBottomStart="0dp"
+                app:boxCornerRadiusTopStart="0dp"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietClave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    style="@style/textBalance"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp">
+
+                <CheckBox
+                    android:id="@+id/chkTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Al crear la cuenta, acepto los términos y condiciones de la aplicación BALANCE+"
+                    android:textSize="13sp"
+                    style="@style/textBalance"/>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CREAR CUENTA"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cornerRadius="0dp"
+                android:textStyle="normal"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/balance" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
