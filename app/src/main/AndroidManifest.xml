@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Balance">
 
         <activity
-            android:name=".DivisaActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,8 +30,16 @@
             android:exported="true" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".DivisaActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".BalanceActivity"
+            android:exported="true" />
+
+
+
+
 
     </application>
 

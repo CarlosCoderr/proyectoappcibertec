@@ -70,12 +70,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogin"
+                style="@style/boton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Siguiente"
                 android:layout_marginTop="16dp"
-                style="@style/boton"/>
-
+                android:text="Siguiente" />
 
 
         </LinearLayout>
