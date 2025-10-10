@@ -22,6 +22,7 @@
 
     <!---  COLORES DE LA APP !-->
     <color name="negro">#0B0F12</color>
+    <color name="gris">#2E2E2E</color>
     <color name="blanco">#ffffff</color>
     <color name="balance">#F1B90C</color>
     <color name="borde">#D9D9D9</color>

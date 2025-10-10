@@ -13,6 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="16dp"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -30,15 +31,15 @@
 
                 <ImageView
                     android:id="@+id/ivLogoInicio"
-                    android:layout_width="200dp"
-                    android:layout_height="0dp"
-                    android:scaleType="fitCenter"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_logo"
-                    app:layout_constraintDimensionRatio="3:4"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scaleType="centerInside"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -55,7 +56,7 @@
                 android:id="@+id/tilCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Correo"
+                android:hint="Correo electronico"
                 app:boxCornerRadiusBottomEnd="0dp"
                 app:boxCornerRadiusTopEnd="0dp"
                 app:boxCornerRadiusBottomStart="0dp"
@@ -82,8 +83,7 @@
                 app:boxCornerRadiusBottomEnd="0dp"
                 app:boxCornerRadiusTopEnd="0dp"
                 app:boxCornerRadiusBottomStart="0dp"
-                app:boxCornerRadiusTopStart="0dp"
-                app:endIconMode="password_toggle">
+                app:boxCornerRadiusTopStart="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietClave"
@@ -101,11 +101,6 @@
                 android:layout_height="wrap_content"
                 android:text="Iniciar sesión"
                 android:layout_marginTop="16dp"
-                app:cornerRadius="0dp"
-                android:textStyle="normal"
-                android:textSize="22dp"
-                android:textColor="@color/black"
-                app:backgroundTint="@color/balance"
                 style="@style/boton"/>
 
             <TextView
@@ -114,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:text="¿Olvidaste tu contraseña?"
                 android:layout_marginTop="29dp"
-                style="@style/Widget.Material3.Chip.Input"/>
+                style="@style/textBalance"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,16 +122,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¿Eres nuevo en la aplicacion?"
+                    style="@style/textBalance"
                     />
 
                 <TextView
                     android:id="@+id/tvRegistro"
                     android:layout_width="wrap_content"
-                    android:paddingLeft="4dp"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
                     android:text="Regístrate aquí"
-                    android:textStyle="normal"
-                    android:textColor="@color/balance"
                     style="@style/textBalance"
                    />
             </LinearLayout>
