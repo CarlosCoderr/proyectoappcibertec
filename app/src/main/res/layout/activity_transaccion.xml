@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -31,14 +32,17 @@
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabGastos"
-                android:text="GASTOS" />
+                android:text="GASTOS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabIngresos"
-                android:text="INGRESOS" />
+                android:text="INGRESOS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </com.google.android.material.tabs.TabLayout>
 
-        <!-- Monto PEN (caja pequeña) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,44 +71,50 @@
             android:text="Categorías"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
+    <GridLayout
+        android:id="@+id/gridCategorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:useDefaultMargins="true"
+        android:alignmentMode="alignMargins">
 
-        <!--  3x2 de círculos con etiqueta -->
-        <GridLayout
-            android:id="@+id/gridCategorias"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:rowCount="2"
-            android:useDefaultMargins="true"
-            android:alignmentMode="alignMargins">
+        <include layout="@layout/item_categoria"/>
+        <include layout="@layout/item_categoria"/>
+        <include layout="@layout/item_categoria"/>
+        <include layout="@layout/item_categoria"/>
+        <include layout="@layout/item_categoria"/>
 
-            <!-- Item de categoría , repite 6 veces -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bg_circle"
-                    android:contentDescription="@string/app_name"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CATEGORÍA"
-                    android:textSize="12sp"
-                    android:layout_marginTop="6dp"/>
-            </LinearLayout>
-
-            <!-- Duplica/inyecta más items aquí -->
-        </GridLayout>
-
-        <!-- Fecha (chips como en tu mock) -->
+        <!-- Último: Crear -->
         <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
+
+            <ImageView
+                android:id="@+id/imgCrearCat"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_circle_grey"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_input_add"
+                android:contentDescription="Crear categoría"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crear"
+                android:textSize="12sp"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+    </GridLayout>
+
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -114,31 +124,59 @@
                 android:id="@+id/chipsFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:singleSelection="true">
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                android:showDividers="none">
 
+                <!-- HOY -->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipHoy"
-                    style="@style/Widget.Material3.Chip.Assist"
-                    android:text="6/10\nHoy"/>
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:checkable="true"
+                    android:checked="true"
+                    android:text="6/10\nHoy"
+                    app:chipBackgroundColor="@drawable/chip_bg_selector"
+                    app:chipStrokeColor="@drawable/chip_stroke_selector"
+                    app:chipStrokeWidth="1dp"
+                    app:textAlignment="center"/>
 
+                <!-- AYER -->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipAyer"
-                    style="@style/Widget.Material3.Chip.Assist"
-                    android:text="5/10\nAyer"/>
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:checkable="true"
+                    android:text="5/10\nAyer"
+                    app:chipBackgroundColor="@drawable/chip_bg_selector"
+                    app:chipStrokeColor="@drawable/chip_stroke_selector"
+                    app:chipStrokeWidth="1dp"
+                    app:textAlignment="center"/>
 
+                <!-- HACE DOS DÍAS -->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipAntes"
-                    style="@style/Widget.Material3.Chip.Assist"
-                    android:text="5/10\nHace dos días"/>
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:checkable="true"
+                    android:text="4/10\nHace dos días"
+                    app:chipBackgroundColor="@drawable/chip_bg_selector"
+                    app:chipStrokeColor="@drawable/chip_stroke_selector"
+                    app:chipStrokeWidth="1dp"
+                    app:textAlignment="center"/>
 
+                <!-- ELEGIR FECHA (icono calendario) -->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipOtro"
                     style="@style/Widget.Material3.Chip.Assist"
-                    android:text=""/>
+                    android:text=""
+                    app:chipIcon="@android:drawable/ic_menu_my_calendar"
+                    app:chipIconTint="@color/black"
+                    app:iconStartPadding="8dp"
+                    app:chipBackgroundColor="@drawable/chip_bg_selector"
+                    app:chipStrokeColor="@drawable/chip_stroke_selector"
+                    app:chipStrokeWidth="1dp"
+                    android:contentDescription="Elegir fecha"/>
             </com.google.android.material.chip.ChipGroup>
-        </LinearLayout>
 
-        <!-- Comentario con contador -->
+            <!-- Comentario con contador -->
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

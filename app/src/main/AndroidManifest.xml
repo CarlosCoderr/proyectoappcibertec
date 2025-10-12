@@ -33,9 +33,14 @@
             android:name=".DivisaActivity"
             android:exported="true" />
 
+
         <activity
             android:name=".BalanceActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".TransaccionActivity"
+            android:exported="true"/>
 
 
 
