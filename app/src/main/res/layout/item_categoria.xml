@@ -2,25 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_columnWeight="1"
+    android:layout_marginBottom="8dp"
     android:orientation="vertical"
     android:gravity="center"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp">
+    android:paddingVertical="4dp">
 
     <ImageView
         android:id="@+id/imgCat"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="@drawable/bg_circle_grey"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/app_name"/>
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_circle"
+        android:paddingHorizontal="12dp"
+        android:clickable="true"
+        android:focusable="true" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/txtCat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:text="CATEGORÍA"
-        android:textSize="12sp"
-        android:layout_marginTop="6dp"/>
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        android:maxLines="1"
+        android:ellipsize="end" />
 </LinearLayout>
