@@ -16,7 +16,9 @@
         android:theme="@style/Theme.Balance">
         <activity
             android:name=".InicioActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -25,19 +27,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".RegistroActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".DivisaActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".BalanceActivity"
-            android:exported="true" />
-        <activity
-            android:name=".TransaccionActivity"
-            android:exported="true" />
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -25,6 +25,10 @@ class DivisaActivity : AppCompatActivity() {
 
     private var divisaSeleccionada: Divisa? = null
 
+    //cambio de activity
+
+    private lateinit var btnLogin : MaterialButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_divisa)
@@ -43,6 +47,7 @@ class DivisaActivity : AppCompatActivity() {
         etBuscar = findViewById(R.id.etBuscar)
         rvDivisas = findViewById(R.id.rvDivisas)
         btnSiguiente = findViewById(R.id.btnLogin)
+
     }
 
     private fun configurarRecyclerView() {
@@ -88,6 +93,10 @@ class DivisaActivity : AppCompatActivity() {
     private fun configurarBotonSiguiente() {
         btnSiguiente.setOnClickListener {
             if (divisaSeleccionada != null) {
+                val resultIntent = Intent(this, BalanceActivity::class.java)
+                resultIntent.putExtra("codigoDivisa", divisaSeleccionada!!.codigo)
+                startActivity(resultIntent)
+
                 // Guardar en SharedPreferences
                 val sharedPref = getSharedPreferences("AppPreferences", MODE_PRIVATE)
                 with(sharedPref.edit()) {
@@ -96,7 +105,9 @@ class DivisaActivity : AppCompatActivity() {
                     apply()
                 }
                 Toast.makeText(this, "Divisa guardada: ${divisaSeleccionada!!.nombre}", Toast.LENGTH_SHORT).show()
-                finish() // Cierra esta Activity
+
+                 // Cierra esta Activity
+//                startActivity(resultIntent)
             } else {
                 Toast.makeText(this, "Por favor selecciona una divisa", Toast.LENGTH_SHORT).show()
             }

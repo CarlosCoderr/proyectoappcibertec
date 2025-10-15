@@ -30,7 +30,7 @@ class InicioActivity : AppCompatActivity() {
         }
 
         txtAhorros.setOnClickListener {
-            cargarFragment(IngresosFragment())
+            cargarFragment(AhorrosFragment())
         }
 
 

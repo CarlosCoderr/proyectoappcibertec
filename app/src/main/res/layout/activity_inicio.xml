@@ -10,7 +10,10 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="36dp"
+        android:paddingBottom="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +39,8 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     style="@style/textBalance"
-                    android:textAllCaps="true"/>
+                    android:textAllCaps="true"
+                    android:padding="10dp"/>
 
                 <TextView
                     android:id="@+id/txtIngresos"
@@ -46,7 +50,8 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     style="@style/textBalance"
-                    android:textAllCaps="true"/>
+                    android:textAllCaps="true"
+                    android:padding="10dp"/>
 
                 <TextView
                     android:id="@+id/txtAhorros"
@@ -56,7 +61,9 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     style="@style/textBalance"
-                    android:textAllCaps="true"/>
+                    android:textAllCaps="true"
+                    android:padding="10dp"
+                    android:background="@color/warning_orange"/>
 
             </LinearLayout>
 
@@ -64,7 +71,8 @@
                 android:id="@+id/FragmentContenedor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/blue"/>
+                android:background="@color/blue"
+                android:layout_marginTop="15dp"/>
 
         </LinearLayout>
 
