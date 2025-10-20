@@ -1,11 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Base.Theme.Balance" parent="Theme.Material3.DayNight.NoActionBar">
-
-
+    </style>
+    <style name="Theme.Balance" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/gold</item>
+        <item name="colorSecondary">@color/gold</item>
+        <item name="colorOnPrimary">@color/black</item>
     </style>
 
-    <style name="Theme.Balance" parent="Base.Theme.Balance" />
+
 
     <style name="textBalance">
         <item name="android:fontFamily">@font/roboto_regular</item>
@@ -37,5 +40,6 @@
         <item name="cornerRadius">0dp</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
 
 </resources>

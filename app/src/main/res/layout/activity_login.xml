@@ -62,7 +62,7 @@
                 app:boxCornerRadiusBottomStart="0dp"
                 app:boxCornerRadiusTopStart="0dp"
                 android:layout_marginTop="16dp"
-                >
+                app:boxBackgroundMode="outline">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietCorreo"
@@ -83,7 +83,8 @@
                 app:boxCornerRadiusBottomEnd="0dp"
                 app:boxCornerRadiusTopEnd="0dp"
                 app:boxCornerRadiusBottomStart="0dp"
-                app:boxCornerRadiusTopStart="0dp">
+                app:boxCornerRadiusTopStart="0dp"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietClave"

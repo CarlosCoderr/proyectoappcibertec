@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/blanco"
-    tools:context=".DivisaActivity">
+    tools:context=".DivisaFragment">
 
     <ScrollView
         android:layout_width="0dp"
@@ -69,7 +69,7 @@
                 android:layout_marginBottom="16dp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnSiguienteDivisa"
                 style="@style/boton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

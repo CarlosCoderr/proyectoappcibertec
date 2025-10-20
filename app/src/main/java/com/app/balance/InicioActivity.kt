@@ -1,54 +1,86 @@
 package com.app.balance
 
 import android.os.Bundle
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.addCallback
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.navigation.NavigationView
 
 class InicioActivity : AppCompatActivity() {
 
-    private lateinit var txtGastos: TextView
-    private lateinit var txtIngresos: TextView
-    private lateinit var txtAhorros: TextView
+    private lateinit var drawer: DrawerLayout
+    private lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_inicio)
 
-        txtGastos=findViewById(R.id.txtGastos)
-        txtIngresos=findViewById(R.id.txtIngresos)
-        txtAhorros=findViewById(R.id.txtAhorros)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        txtGastos.setOnClickListener {
-            cargarFragment(GastosFragment())
+        drawer = findViewById(R.id.drawerLayout)
+        navView = findViewById(R.id.navigationView)
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawer, toolbar,
+            R.string.menu_open, R.string.menu_close
+        )
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
+
+        if (savedInstanceState == null) {
+            val open = intent.getStringExtra("open")
+            if (open == "dashboard") {
+                replace(DashboardFragment())
+                navView.setCheckedItem(R.id.nav_inicio)
+                supportActionBar?.title = "Dashboard"
+            } else {
+                replace(BienvenidaFragment())
+                navView.setCheckedItem(R.id.nav_inicio)
+                supportActionBar?.title = "BALANCE+"
+            }
         }
 
-        txtIngresos.setOnClickListener {
-            cargarFragment(IngresosFragment())
+        navView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_inicio -> {
+                    replace(BienvenidaFragment())
+                    supportActionBar?.title = "BALANCE+"
+                }
+                R.id.nav_config -> {
+                    replace(ConfiguracionFragment())
+                    supportActionBar?.title = "Configuración"
+                }
+                R.id.nav_perfil -> {
+                    replace(PerfilFragment())
+                    supportActionBar?.title = "Mi cuenta"
+                }
+            }
+            drawer.closeDrawers()
+            true
         }
 
-        txtAhorros.setOnClickListener {
-            cargarFragment(AhorrosFragment())
+        onBackPressedDispatcher.addCallback(this) {
+            when {
+                drawer.isDrawerOpen(GravityCompat.START) -> drawer.closeDrawer(GravityCompat.START)
+                supportFragmentManager.backStackEntryCount > 0 -> supportFragmentManager.popBackStack()
+                else -> finish()
+            }
         }
 
-
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
-
-        cargarFragment(IngresosFragment())
 
     }
 
-    private fun cargarFragment(fragment: Fragment){
+    private fun replace(f: Fragment) {
+        val current = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+        if (current?.javaClass == f.javaClass) return
         supportFragmentManager.beginTransaction()
-            .replace(R.id.FragmentContenedor,fragment)
+            .replace(R.id.fragmentContainer, f)
             .commit()
     }
-
-
 }
+
