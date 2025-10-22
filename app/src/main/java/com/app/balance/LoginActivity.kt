@@ -1,6 +1,5 @@
 package com.app.balance
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -9,10 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.app.balance.repo.UsuarioRepository
+import com.app.balance.data.AppDatabaseHelper
+import com.app.balance.data.dao.UsuarioDAO
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,10 +25,18 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var tvClaveOlvidada: TextView
     private lateinit var tvRegistro: TextView
 
+    private lateinit var dbHelper: AppDatabaseHelper
+    private lateinit var usuarioDAO: UsuarioDAO
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
+
+        // Inicializar base de datos
+        dbHelper = AppDatabaseHelper(this)
+        val db = dbHelper.readableDatabase
+        usuarioDAO = UsuarioDAO(db, dbHelper)
 
         incializarVistas()
         configurandoListeners()
@@ -52,6 +61,9 @@ class LoginActivity : AppCompatActivity() {
     private fun configurandoListeners() {
         btnLogin.setOnClickListener { validarCampos() }
         tvRegistro.setOnClickListener { cambioActivity(RegistroActivity::class.java) }
+        tvClaveOlvidada.setOnClickListener {
+            Toast.makeText(this, "Función en desarrollo", Toast.LENGTH_SHORT).show()
+        }
 
         tietCorreo.setOnFocusChangeListener { _, hasFocus -> if (hasFocus) tilCorreo.error = null }
         tietClave.setOnFocusChangeListener { _, hasFocus -> if (hasFocus) tilClave.error = null }
@@ -65,45 +77,91 @@ class LoginActivity : AppCompatActivity() {
         if (correo.isEmpty()) {
             tilCorreo.error = "Ingrese un correo"
             error = true
-        } else tilCorreo.error = null
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+            tilCorreo.error = "Ingrese un correo válido"
+            error = true
+        } else {
+            tilCorreo.error = null
+        }
 
         if (clave.isEmpty()) {
-            tilClave.error = "Ingrese una clave"
+            tilClave.error = "Ingrese una contraseña"
             error = true
-        } else tilClave.error = null
+        } else if (clave.length < 6) {
+            tilClave.error = "La contraseña debe tener al menos 6 caracteres"
+            error = true
+        } else {
+            tilClave.error = null
+        }
 
         if (!error) iniciarSesion(correo, clave)
     }
 
     private fun iniciarSesion(correo: String, clave: String) {
-        Toast.makeText(this, "Validando datos...", Toast.LENGTH_SHORT).show()
+        btnLogin.isEnabled = false
+        btnLogin.text = "Verificando..."
 
-        // Buscar usuario en repositorio
-        val usuario = UsuarioRepository.buscarUsuario(correo, clave)
+        try {
+            // Obtener usuario por correo
+            val usuario = usuarioDAO.obtenerUsuarioPorEmail(correo)
 
-        if (usuario != null) {
-            // Guardar sesión localmente
-            getSharedPreferences("AppPreferences", MODE_PRIVATE).edit()
-                .putInt("USER_ID", usuario.codigo)
-                .putString("USER_NOMBRE", "${usuario.nombre} ${usuario.apellidos}")
-                .putString("USER_CORREO", usuario.correo)
-                .apply()
+            if (usuario != null) {
+                // Verificar contraseña (hashear y comparar)
+                val claveHasheada = hashearContrasena(clave)
 
-            Toast.makeText(this, "Bienvenido ${usuario.nombre}", Toast.LENGTH_SHORT).show()
+                if (usuario.contrasena == claveHasheada) {
+                    // Guardar sesión en SharedPreferences
+                    getSharedPreferences("AppPreferences", MODE_PRIVATE).edit()
+                        .putInt("USER_ID", usuario.id)
+                        .putString("USER_NOMBRE", "${usuario.nombre} ${usuario.apellido}")
+                        .putString("USER_CORREO", usuario.email)
+                        .putInt("USER_DIVISA_ID", usuario.divisaId)
+                        .putBoolean("SESION_ACTIVA", true)
+                        .apply()
 
-            // Ir a la pantalla principal
-            startActivity(
-                Intent(this, InicioActivity::class.java)
-                    .putExtra("open", "bienvenida")
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            )
-        } else {
-            Toast.makeText(this, "Correo o clave incorrectos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "¡Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
+
+                    // Ir a la pantalla principal
+                    startActivity(
+                        Intent(this, DivisaActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    )
+                    finish()
+                } else {
+                    tilClave.error = "Contraseña incorrecta"
+                    Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
+                    btnLogin.isEnabled = true
+                    btnLogin.text = "Iniciar sesión"
+                }
+            } else {
+                tilCorreo.error = "Usuario no registrado"
+                Toast.makeText(this, "Este correo no está registrado", Toast.LENGTH_SHORT).show()
+                btnLogin.isEnabled = true
+                btnLogin.text = "Iniciar sesión"
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error al iniciar sesión: ${e.message}", Toast.LENGTH_SHORT).show()
+            btnLogin.isEnabled = true
+            btnLogin.text = "Iniciar sesión"
         }
     }
 
-    private fun cambioActivity(activityDestino: Class<out Activity>) {
+    /**
+     * Hashea una contraseña usando SHA-256
+     */
+    private fun hashearContrasena(contrasena: String): String {
+        val bytes = MessageDigest.getInstance("SHA-256").digest(contrasena.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
+    }
+
+    private fun cambioActivity(activityDestino: Class<out AppCompatActivity>) {
         val intent = Intent(this, activityDestino)
         startActivity(intent)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        dbHelper.close()
+    }
 }
+

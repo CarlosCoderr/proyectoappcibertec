@@ -57,12 +57,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Correo electronico"
-                app:boxCornerRadiusBottomEnd="0dp"
-                app:boxCornerRadiusTopEnd="0dp"
-                app:boxCornerRadiusBottomStart="0dp"
-                app:boxCornerRadiusTopStart="0dp"
                 android:layout_marginTop="16dp"
-                app:boxBackgroundMode="outline">
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopStart="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietCorreo"
@@ -79,12 +79,12 @@
                 android:layout_height="wrap_content"
                 android:hint="Contraseña"
                 android:layout_marginTop="16dp"
-                app:passwordToggleEnabled="true"
-                app:boxCornerRadiusBottomEnd="0dp"
-                app:boxCornerRadiusTopEnd="0dp"
-                app:boxCornerRadiusBottomStart="0dp"
-                app:boxCornerRadiusTopStart="0dp"
-                >
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tietClave"
@@ -95,7 +95,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
@@ -104,20 +103,16 @@
                 android:layout_marginTop="16dp"
                 style="@style/boton"/>
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/googleButton"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:src="@mipmap/ic_google_round"-->
-<!--                android:scaleType="fitStart" />-->
-
             <TextView
                 android:id="@+id/tvClaveOlvidada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¿Olvidaste tu contraseña?"
                 android:layout_marginTop="29dp"
-                style="@style/textBalance"/>
+                android:textStyle="bold"
+                style="@style/textBalance"
+                android:clickable="true"
+                android:focusable="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,18 +124,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¿Eres nuevo en la aplicacion?"
-                    style="@style/textBalance"
-                    />
+                    android:text="¿Eres nuevo en la aplicación? "
+                    style="@style/textBalance"/>
 
                 <TextView
                     android:id="@+id/tvRegistro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="4dp"
                     android:text="Regístrate aquí"
-                    style="@style/textBalance"
-                   />
+                    android:textStyle="bold"
+                    style="Registrate aqui"
+                    android:clickable="true"
+                    android:focusable="true"/>
             </LinearLayout>
 
         </LinearLayout>

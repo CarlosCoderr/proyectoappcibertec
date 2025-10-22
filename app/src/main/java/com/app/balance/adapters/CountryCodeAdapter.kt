@@ -5,31 +5,64 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.TextView
-import com.app.balance.entity.CountryCode
+import com.app.balance.R
+import com.app.balance.model.CountryCode
+import com.bumptech.glide.Glide
 
 class CountryCodeAdapter(
     context: Context,
-    private val countries: List<CountryCode>
+    countries: List<CountryCode>
 ) : ArrayAdapter<CountryCode>(context, 0, countries) {
 
+    private val inflater = LayoutInflater.from(context)
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        return createView(position, convertView, parent)
-    }
+        val view = convertView ?: inflater.inflate(R.layout.item_country_spinner, parent, false)
 
-    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-        return createView(position, convertView, parent)
-    }
+        val country = getItem(position)
+        if (country != null) {
+            val tvCountry = view.findViewById<TextView>(R.id.tvCountryName)
+            val ivFlag = view.findViewById<ImageView>(R.id.ivFlag)
 
-    private fun createView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(
-            android.R.layout.simple_spinner_item, parent, false
-        )
+            tvCountry.text = "${country.nombre} (${country.codigo})"
 
-        val country = countries[position]
-        (view as TextView).text = "${country.name} (${country.code})"
+            // Cargar imagen con Glide
+            if (!country.bandera.isNullOrEmpty()) {
+                Glide.with(context)
+                    .load(country.bandera)
+                    .centerCrop()
+                    .placeholder(android.R.drawable.ic_dialog_map)
+                    .error(android.R.drawable.ic_dialog_map)
+                    .into(ivFlag)
+            }
+        }
 
         return view
     }
 
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = convertView ?: inflater.inflate(R.layout.item_country_dropdown, parent, false)
+
+        val country = getItem(position)
+        if (country != null) {
+            val tvCountry = view.findViewById<TextView>(R.id.tvCountryName)
+            val ivFlag = view.findViewById<ImageView>(R.id.ivFlag)
+
+            tvCountry.text = country.nombre
+
+            // Cargar imagen con Glide
+            if (!country.bandera.isNullOrEmpty()) {
+                Glide.with(context)
+                    .load(country.bandera)
+                    .centerCrop()
+                    .placeholder(android.R.drawable.ic_dialog_map)
+                    .error(android.R.drawable.ic_dialog_map)
+                    .into(ivFlag)
+            }
+        }
+
+        return view
+    }
 }

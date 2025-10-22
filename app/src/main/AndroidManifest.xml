@@ -1,29 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.balance">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:theme="@style/Theme.Balance"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name">
-
-        <activity
-            android:name=".LoginActivity"
-             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Balance">
         <activity
             android:name=".InicioActivity"
             android:exported="false" />
         <activity
+            android:name=".TransaccionGastoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CrearCategoriaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BalanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DivisaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BienvenidoActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".RegistroActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
