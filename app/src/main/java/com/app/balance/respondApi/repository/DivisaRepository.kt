@@ -1,47 +1,38 @@
 package com.app.balance.respondApi.repository
 
-import com.app.balance.data.dao.CountryCodeDAO
-import com.app.balance.model.CountryCode
-import com.app.balance.network.ExchangeRateService
+import com.app.balance.model.Divisa
+import com.app.balance.network.PaisesApiServiceDivisa
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class DivisaRepository(
-    private val divisaService: ExchangeRateService,
-    private val divisaDAO: CountryCodeDAO
-) {
+class DivisaRepository(private val paisService: PaisesApiServiceDivisa) {
 
-    suspend fun cargarDivisasDesdeAPI(): Result<List<CountryCode>> = withContext(Dispatchers.IO) {
+    suspend fun cargarDivisas(): Result<List<Divisa>> = withContext(Dispatchers.IO) {
         try {
-            val response = divisaService.obtenerDivisas()
+            val response = paisService.obtenerPaises()
+
             if (response.isSuccessful) {
-                val body = response.body()
-                val rates = body?.get("rates") as? Map<*, *>
+                val paises = response.body() ?: emptyList()
 
-                if (rates != null) {
-                    val divisas = mutableListOf<CountryCode>()
-                    var id = 1
+                val divisasFormato = paises.mapNotNull { pais ->
+                    val nombre = pais.name.common
+                    val bandera = pais.flags.png ?: pais.flags.svg ?: ""
 
-                    rates.forEach { (codigo, _) ->
-                        divisas.add(
-                            CountryCode(
-                                nombre = obtenerNombreDivisa(codigo.toString()),
-                                codigo = codigo.toString()
-                            )
-                        )
-                        id++
-                    }
+                    if (bandera.isEmpty()) return@mapNotNull null
 
-                    // Guardar en BD local
-                    val guardadas = divisaDAO.insertarDivisas(divisas)
-                    if (guardadas) {
-                        Result.success(divisas)
-                    } else {
-                        Result.failure(Exception("Error al guardar divisas en BD local"))
-                    }
-                } else {
-                    Result.failure(Exception("Formato de respuesta inválido"))
-                }
+                    val codigoDivisa = obtenerCodigoDivisaDelPais(pais.currencies)
+
+                    if (codigoDivisa.isEmpty()) return@mapNotNull null
+
+                    Divisa(
+                        nombre = nombre,
+                        codigo = codigoDivisa,
+                        bandera = bandera
+                    )
+                }.sortedBy { it.nombre }
+                    .distinctBy { it.codigo }
+
+                Result.success(divisasFormato)
             } else {
                 Result.failure(Exception("Error en la API: ${response.code()}"))
             }
@@ -50,27 +41,10 @@ class DivisaRepository(
         }
     }
 
-    fun obtenerDivisasLocales(): List<CountryCode> {
-        return divisaDAO.obtenerTodosPaises()
-    }
-
-    fun obtenerDivisaPorCodigo(codigo: String): CountryCode? {
-        return divisaDAO.obtenerPaisPorCodigo(codigo)
-    }
-
-    private fun obtenerNombreDivisa(codigo: String): String {
-        return when (codigo) {
-            "USD" -> "Dólar estadounidense"
-            "EUR" -> "Euro"
-            "ARS" -> "Peso argentino"
-            "BRL" -> "Real brasileño"
-            "MXN" -> "Peso mexicano"
-            "CLP" -> "Peso chileno"
-            "PEN" -> "Sol peruano"
-            "COP" -> "Peso colombiano"
-            "UYU" -> "Peso uruguayo"
-            "VES" -> "Bolívar venezolano"
-            else -> codigo
+    private fun obtenerCodigoDivisaDelPais(currencies: Map<String, Map<String, String>>?): String {
+        if (currencies == null || currencies.isEmpty()) {
+            return ""
         }
+        return currencies.keys.firstOrNull() ?: ""
     }
 }

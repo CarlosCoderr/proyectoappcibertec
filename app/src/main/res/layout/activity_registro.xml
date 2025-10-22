@@ -16,6 +16,8 @@
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
         android:paddingTop="48dp"
+        android:scrollbars="none"
+        android:fadeScrollbars="false"
         android:paddingBottom="48dp"
         android:clipToPadding="false">
 

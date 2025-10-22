@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.AdapterView
 import android.widget.CheckBox
 import android.widget.Spinner
@@ -17,8 +18,8 @@ import com.app.balance.data.AppDatabaseHelper
 import com.app.balance.data.dao.UsuarioDAO
 import com.app.balance.model.CountryCode
 import com.app.balance.model.Usuario
-import com.app.balance.network.apiClient.PaisesApiClient
-import com.app.balance.respondApi.repository.PaisRepository
+import com.app.balance.network.apiClient.PaisesApiClientRegistro
+import com.app.balance.respondApi.repository.PaisRepositoryRegistro
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
@@ -57,7 +58,7 @@ class RegistroActivity : AppCompatActivity() {
 
     private lateinit var dbHelper: AppDatabaseHelper
     private lateinit var usuarioDAO: UsuarioDAO
-    private lateinit var paisRepository: PaisRepository
+    private lateinit var paisRepository: PaisRepositoryRegistro
 
     private var paises = mutableListOf<CountryCode>()
     private var selectedCountryCode = "+51"
@@ -73,8 +74,8 @@ class RegistroActivity : AppCompatActivity() {
         usuarioDAO = UsuarioDAO(db, dbHelper)
 
         // Inicializar repositorio de países
-        val paisService = PaisesApiClient.crearServicio()
-        paisRepository = PaisRepository(paisService)
+        val paisService = PaisesApiClientRegistro.crearServicio()
+        paisRepository = PaisRepositoryRegistro(paisService)
 
         initViews()
         setupGenderCheckboxes()
@@ -180,14 +181,13 @@ class RegistroActivity : AppCompatActivity() {
         val adapter = CountryCodeAdapter(this, paises)
         spinnerCountry.adapter = adapter
 
-        // Seleccionar Perú por defecto
         val peruIndex = paises.indexOfFirst { it.codigo == "+51" }
         if (peruIndex != -1) {
             spinnerCountry.setSelection(peruIndex)
         }
 
         spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCountryCode = paises[position].codigo
                 tilCelular.prefixText = selectedCountryCode
             }
@@ -195,8 +195,6 @@ class RegistroActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
-
-
 
     private fun setupValidation() {
         tietCorreo.addTextChangedListener(object : TextWatcher {
@@ -500,7 +498,7 @@ class RegistroActivity : AppCompatActivity() {
                     val clave = tietClave.text.toString()
                     val claveHasheada = hashearContrasena(clave)
 
-                    // Buscar el índice del país seleccionado
+                    // Obtener ID de divisa (usar 1 como defecto)
                     val indexPaisSeleccionado = paises.indexOfFirst { it.codigo == selectedCountryCode }
                     val divisaId = if (indexPaisSeleccionado != -1) paises[indexPaisSeleccionado].id else 1
 
@@ -551,7 +549,6 @@ class RegistroActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun hashearContrasena(contrasena: String): String {

@@ -1,5 +1,6 @@
 package com.app.balance.adapters
 
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +9,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.balance.R
-import com.app.balance.model.CountryCode
+import com.app.balance.model.Divisa
 import com.bumptech.glide.Glide
 
 class DivisaAdapter(
-    private var paises: List<CountryCode>,
-    private val onPaisClick: (CountryCode) -> Unit
+    private var divisas: List<Divisa>,
+    private val onDivisaClick: (Divisa) -> Unit
 ) : RecyclerView.Adapter<DivisaAdapter.DivisaViewHolder>() {
 
-    private var paisesFiltrados = paises.toList()
+    private var divisasFiltradas = divisas.toList()
     private var seleccionadoPosition = -1
 
     class DivisaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,21 +33,19 @@ class DivisaAdapter(
     }
 
     override fun onBindViewHolder(holder: DivisaViewHolder, @SuppressLint("RecyclerView") position: Int) {
-        val pais = paisesFiltrados[position]
-        holder.tvNombre.text = pais.nombre
-        holder.tvCodigo.text = pais.codigo
+        val divisa = divisasFiltradas[position]
+        holder.tvNombre.text = divisa.nombre
+        holder.tvCodigo.text = divisa.codigo
 
-        // Cargar bandera con Glide
-        if (!pais.bandera.isNullOrEmpty()) {
+        if (!divisa.bandera.isNullOrEmpty()) {
             Glide.with(holder.itemView.context)
-                .load(pais.bandera)
+                .load(divisa.bandera)
                 .centerCrop()
                 .placeholder(android.R.drawable.ic_dialog_map)
                 .error(android.R.drawable.ic_dialog_map)
                 .into(holder.ivBandera)
         }
 
-        // Cambiar color si está seleccionado
         if (position == seleccionadoPosition) {
             holder.itemView.setBackgroundColor(
                 holder.itemView.context.getColor(android.R.color.darker_gray)
@@ -61,40 +60,40 @@ class DivisaAdapter(
             val posicionAnterior = seleccionadoPosition
             seleccionadoPosition = position
 
-            if (posicionAnterior != -1 && posicionAnterior < paisesFiltrados.size) {
+            if (posicionAnterior != -1 && posicionAnterior < divisasFiltradas.size) {
                 notifyItemChanged(posicionAnterior)
             }
             notifyItemChanged(position)
 
-            onPaisClick(pais)
+            onDivisaClick(divisa)
         }
     }
 
-    override fun getItemCount() = paisesFiltrados.size
+    override fun getItemCount() = divisasFiltradas.size
 
     fun filtrar(query: String) {
-        paisesFiltrados = if (query.isEmpty()) {
-            paises
+        divisasFiltradas = if (query.isEmpty()) {
+            divisas
         } else {
-            paises.filter { pais ->
-                pais.nombre.contains(query, ignoreCase = true) ||
-                        pais.codigo.contains(query, ignoreCase = true)
+            divisas.filter { divisa ->
+                divisa.nombre.contains(query, ignoreCase = true) ||
+                        divisa.codigo.contains(query, ignoreCase = true)
             }
         }
         seleccionadoPosition = -1
         notifyDataSetChanged()
     }
 
-    fun actualizarDatos(nuevosPaises: List<CountryCode>) {
-        paises = nuevosPaises
-        paisesFiltrados = nuevosPaises
+    fun actualizarDatos(nuevosDivisas: List<Divisa>) {
+        divisas = nuevosDivisas
+        divisasFiltradas = nuevosDivisas
         seleccionadoPosition = -1
         notifyDataSetChanged()
     }
 
-    fun getPaisSeleccionado(): CountryCode? {
-        return if (seleccionadoPosition >= 0 && seleccionadoPosition < paisesFiltrados.size) {
-            paisesFiltrados[seleccionadoPosition]
+    fun getDivisaSeleccionada(): Divisa? {
+        return if (seleccionadoPosition >= 0 && seleccionadoPosition < divisasFiltradas.size) {
+            divisasFiltradas[seleccionadoPosition]
         } else {
             null
         }

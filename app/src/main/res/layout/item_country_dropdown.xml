@@ -16,12 +16,29 @@
         android:contentDescription="Bandera"
         android:layout_marginEnd="12dp"/>
 
-    <TextView
-        android:id="@+id/tvCountryName"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="14sp"
-        android:textColor="@android:color/black"/>
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvCountryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvCountryCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@android:color/darker_gray"/>
+
+    </LinearLayout>
 
 </LinearLayout>

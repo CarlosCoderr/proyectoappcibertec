@@ -11,6 +11,7 @@ import com.app.balance.R
 import com.app.balance.model.CountryCode
 import com.bumptech.glide.Glide
 
+
 class CountryCodeAdapter(
     context: Context,
     countries: List<CountryCode>
@@ -24,9 +25,11 @@ class CountryCodeAdapter(
         val country = getItem(position)
         if (country != null) {
             val tvCountry = view.findViewById<TextView>(R.id.tvCountryName)
+            val tvCode = view.findViewById<TextView>(R.id.tvCountryCode)
             val ivFlag = view.findViewById<ImageView>(R.id.ivFlag)
 
-            tvCountry.text = "${country.nombre} (${country.codigo})"
+            tvCountry.text = country.nombre
+            tvCode.text = country.codigo
 
             // Cargar imagen con Glide
             if (!country.bandera.isNullOrEmpty()) {
@@ -48,9 +51,11 @@ class CountryCodeAdapter(
         val country = getItem(position)
         if (country != null) {
             val tvCountry = view.findViewById<TextView>(R.id.tvCountryName)
+            val tvCode = view.findViewById<TextView>(R.id.tvCountryCode)
             val ivFlag = view.findViewById<ImageView>(R.id.ivFlag)
 
             tvCountry.text = country.nombre
+            tvCode.text = country.codigo
 
             // Cargar imagen con Glide
             if (!country.bandera.isNullOrEmpty()) {

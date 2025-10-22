@@ -1,6 +1,7 @@
 package com.app.balance
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,8 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.balance.adapters.DivisaAdapter
 import com.app.balance.model.CountryCode
-import com.app.balance.network.apiClient.PaisesApiClient
-import com.app.balance.respondApi.repository.PaisRepository
+import com.app.balance.model.Divisa
+import com.app.balance.network.apiClient.PaisesApiClientDivisa
+import com.app.balance.network.apiClient.PaisesApiClientRegistro
+import com.app.balance.respondApi.repository.DivisaRepository
+import com.app.balance.respondApi.repository.PaisRepositoryRegistro
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 
@@ -29,9 +33,9 @@ class DivisaActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
 
     private lateinit var adapter: DivisaAdapter
-    private lateinit var repository: PaisRepository
+    private lateinit var repository: DivisaRepository
 
-    private var todosLosPaises = mutableListOf<CountryCode>()
+    private var todasLasDivisas = mutableListOf<Divisa>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +54,7 @@ class DivisaActivity : AppCompatActivity() {
         setupSearchListener()
         setupBoton()
 
-        cargarPaises()
+        cargarDivisas()
     }
 
     private fun initViews() {
@@ -61,10 +65,10 @@ class DivisaActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter() {
-        adapter = DivisaAdapter(emptyList()) { pais ->
+        adapter = DivisaAdapter(emptyList()) { divisa ->
             Toast.makeText(
                 this,
-                "Seleccionaste: ${pais.nombre} (${pais.codigo})",
+                "Seleccionaste: ${divisa.nombre} (${divisa.codigo})",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -73,8 +77,8 @@ class DivisaActivity : AppCompatActivity() {
     }
 
     private fun setupRepository() {
-        val paisService = PaisesApiClient.crearServicio()
-        repository = PaisRepository(paisService)
+        val divisaService = PaisesApiClientDivisa.crearServicio()
+        repository = DivisaRepository(divisaService)
     }
 
     private fun setupSearchListener() {
@@ -89,8 +93,8 @@ class DivisaActivity : AppCompatActivity() {
 
     private fun setupBoton() {
         btnSiguienteDivisa.setOnClickListener {
-            val paisSeleccionado = adapter.getPaisSeleccionado()
-            if (paisSeleccionado == null) {
+            val divisaSeleccionada = adapter.getDivisaSeleccionada()
+            if (divisaSeleccionada == null) {
                 Toast.makeText(
                     this,
                     "Por favor selecciona una divisa",
@@ -102,36 +106,37 @@ class DivisaActivity : AppCompatActivity() {
             // Guardar divisa en SharedPreferences
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
             prefs.edit()
-                .putInt("DIVISA_ID", paisSeleccionado.id)
-                .putString("DIVISA_CODIGO", paisSeleccionado.codigo)
-                .putString("DIVISA_NOMBRE", paisSeleccionado.nombre)
-                .putString("DIVISA_BANDERA", paisSeleccionado.bandera)
+                .putInt("DIVISA_ID", divisaSeleccionada.id)
+                .putString("DIVISA_CODIGO", divisaSeleccionada.codigo)
+                .putString("DIVISA_NOMBRE", divisaSeleccionada.nombre)
+                .putString("DIVISA_BANDERA", divisaSeleccionada.bandera)
                 .apply()
 
             Toast.makeText(
                 this,
-                "Divisa guardada: ${paisSeleccionado.nombre}",
+                "Divisa guardada: ${divisaSeleccionada.nombre}",
                 Toast.LENGTH_SHORT
             ).show()
 
-
+            // Navegar a Balance
+            navigateToBalance()
         }
     }
 
-    private fun cargarPaises() {
+    private fun cargarDivisas() {
         progressBar.visibility = ProgressBar.VISIBLE
         lifecycleScope.launch {
-            val resultado = repository.cargarPaises()
+            val resultado = repository.cargarDivisas()
 
-            resultado.onSuccess { paises ->
-                todosLosPaises.clear()
-                todosLosPaises.addAll(paises)
-                adapter.actualizarDatos(paises)
+            resultado.onSuccess { divisas ->
+                todasLasDivisas.clear()
+                todasLasDivisas.addAll(divisas)
+                adapter.actualizarDatos(divisas)
                 progressBar.visibility = ProgressBar.GONE
 
                 Toast.makeText(
                     this@DivisaActivity,
-                    "Se cargaron ${paises.size} países",
+                    "Se cargaron ${divisas.size} divisas",
                     Toast.LENGTH_SHORT
                 ).show()
             }.onFailure { error ->
@@ -145,5 +150,11 @@ class DivisaActivity : AppCompatActivity() {
         }
     }
 
-
+    private fun navigateToBalance() {
+        // Ir a MainActivity o tu Activity principal con el Dashboard
+        val intent = Intent(this, BalanceActivity::class.java) // Cambia a tu Activity principal
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
 }
