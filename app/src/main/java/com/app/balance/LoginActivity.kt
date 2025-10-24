@@ -16,7 +16,6 @@ import com.google.android.material.textfield.TextInputLayout
 import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
-
     private lateinit var tilCorreo: TextInputLayout
     private lateinit var tietCorreo: TextInputEditText
     private lateinit var tilClave: TextInputLayout
@@ -28,8 +27,52 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var dbHelper: AppDatabaseHelper
     private lateinit var usuarioDAO: UsuarioDAO
 
+    private fun normalizePrefs() {
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val editor = prefs.edit()
+        var changed = false
+
+        // 1) Migrar divisa antigua → nueva
+        val legacyUserDivisaId = prefs.getInt("USER_DIVISA_ID", -1)
+        if (prefs.getInt("DIVISA_ID", -1) <= 0 && legacyUserDivisaId > 0) {
+            editor.putInt("DIVISA_ID", legacyUserDivisaId); changed = true
+        }
+
+        // 2) Migrar saldo antiguo → nuevo
+        val legacySaldo = prefs.getString("SALDO_INICIAL", null)
+        if (!prefs.contains("BALANCE_INICIAL") && !legacySaldo.isNullOrBlank()) {
+            editor.putString("BALANCE_INICIAL", legacySaldo); changed = true
+        }
+
+        // 3) Migrar flag de bienvenida antiguo → nuevo
+        if (prefs.getBoolean("welcome_shown", false) && !prefs.getBoolean("WELCOME_SHOWN", false)) {
+            editor.putBoolean("WELCOME_SHOWN", true); changed = true
+        }
+
+        if (changed) editor.apply()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        normalizePrefs()
+
+        // —— Guard de ruteo: si ya hay sesión activa, saltar al paso que falte (divisa / monto / inicio)
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        if (prefs.getBoolean("SESION_ACTIVA", false)) {
+            val hasDivisa = (prefs.getInt("DIVISA_ID", -1) > 0) || !prefs.getString("DIVISA_CODIGO", null).isNullOrBlank()
+
+            val hasMonto  = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
+
+            val next = when {
+                !hasDivisa -> DivisaActivity::class.java
+                !hasMonto  -> BalanceActivity::class.java
+                else       -> InicioActivity::class.java
+            }
+            startActivity(Intent(this, next).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            finish()
+            return
+        }
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
@@ -111,22 +154,40 @@ class LoginActivity : AppCompatActivity() {
 
                 if (usuario.contrasena == claveHasheada) {
                     // Guardar sesión en SharedPreferences
-                    getSharedPreferences("AppPreferences", MODE_PRIVATE).edit()
+                    val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+                    val editor = prefs.edit()
                         .putInt("USER_ID", usuario.id)
                         .putString("USER_NOMBRE", "${usuario.nombre} ${usuario.apellido}")
                         .putString("USER_CORREO", usuario.email)
-                        .putInt("USER_DIVISA_ID", usuario.divisaId)
                         .putBoolean("SESION_ACTIVA", true)
-                        .apply()
+
+                    // Si tu usuario trae divisa asignada, opcionalmente la persistimos como DIVISA_ID
+                    // (Si no, DivisaActivity la pedirá y la guardará)
+                    if (usuario.divisaId > 0) {
+                        editor.putInt("DIVISA_ID", usuario.divisaId)
+                        // Si en tu modelo no tienes símbolo/código aquí, no los toques; DivisaActivity los llenará.
+                    }
+
+                    editor.apply()
 
                     Toast.makeText(this, "¡Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
 
-                    // Ir a la pantalla principal
+                    // —— Ruteo post-login: si falta algo, pedirlo. Si está completo, ir a Inicio.
+                    val hasDivisa = prefs.getInt("DIVISA_ID", -1) > 0
+                    val hasMonto  = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
+
+                    val next = when {
+                        !hasDivisa -> DivisaActivity::class.java
+                        !hasMonto  -> BalanceActivity::class.java
+                        else       -> InicioActivity::class.java
+                    }
+
                     startActivity(
-                        Intent(this, DivisaActivity::class.java)
+                        Intent(this, next)
                             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     )
                     finish()
+
                 } else {
                     tilClave.error = "Contraseña incorrecta"
                     Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
@@ -164,4 +225,3 @@ class LoginActivity : AppCompatActivity() {
         dbHelper.close()
     }
 }
-

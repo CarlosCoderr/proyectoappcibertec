@@ -37,8 +37,58 @@ class DivisaActivity : AppCompatActivity() {
 
     private var todasLasDivisas = mutableListOf<Divisa>()
 
+    // —— Normaliza claves legacy por si algún compañero aún escribe con nombres antiguos
+    private fun normalizePrefs() {
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val editor = prefs.edit()
+        var changed = false
+
+        val legacyUserDivisaId = prefs.getInt("USER_DIVISA_ID", -1)
+        if (prefs.getInt("DIVISA_ID", -1) <= 0 && legacyUserDivisaId > 0) {
+            editor.putInt("DIVISA_ID", legacyUserDivisaId); changed = true
+        }
+
+        val legacySaldo = prefs.getString("SALDO_INICIAL", null)
+        if (!prefs.contains("BALANCE_INICIAL") && !legacySaldo.isNullOrBlank()) {
+            editor.putString("BALANCE_INICIAL", legacySaldo); changed = true
+        }
+
+        if (prefs.getBoolean("welcome_shown", false) && !prefs.getBoolean("WELCOME_SHOWN", false)) {
+            editor.putBoolean("WELCOME_SHOWN", true); changed = true
+        }
+
+        if (changed) editor.apply()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        normalizePrefs()
+
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+
+        val userId = prefs.getInt("USER_ID", -1)
+        val userCorreo = prefs.getString("USER_CORREO", null)
+        val sesionActiva = prefs.getBoolean("SESION_ACTIVA", false)
+
+        // —— Defensa de sesión
+        if (!sesionActiva || userId == -1 || userCorreo.isNullOrBlank()) {
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            )
+            finish()
+            return
+        }
+
+        // —— Guard de ruteo: si ya hay divisa y falta monto → ir a Balance; si todo está, ir a Inicio
+        val divisaId = prefs.getInt("DIVISA_ID", -1)
+        val divisaCodigo = prefs.getString("DIVISA_CODIGO", null)
+        val hasDivisa = (divisaId > 0) || !divisaCodigo.isNullOrBlank()
+        val hasMonto  = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
+        if (hasDivisa && !hasMonto) { /* ir a Balance */ }
+        if (hasDivisa && hasMonto)  { /* ir a Inicio   */ }
+
+        // —— UI
         enableEdgeToEdge()
         setContentView(R.layout.activity_divisa)
 
@@ -53,7 +103,6 @@ class DivisaActivity : AppCompatActivity() {
         setupRepository()
         setupSearchListener()
         setupBoton()
-
         cargarDivisas()
     }
 
@@ -103,23 +152,18 @@ class DivisaActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Guardar divisa en SharedPreferences
+            // —— Guardar divisa en SharedPreferences y forzar reingreso de monto
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
             prefs.edit()
-                .putInt("DIVISA_ID", divisaSeleccionada.id)
-                .putString("DIVISA_CODIGO", divisaSeleccionada.codigo)
+                .putInt("DIVISA_ID", divisaSeleccionada.id)           // puede ser 0; no pasa nada con la regla nueva
+                .putString("DIVISA_CODIGO", divisaSeleccionada.codigo) // ← CLAVE para fallback
                 .putString("DIVISA_NOMBRE", divisaSeleccionada.nombre)
                 .putString("DIVISA_BANDERA", divisaSeleccionada.bandera)
+                .remove("BALANCE_INICIAL")
                 .apply()
 
-            Toast.makeText(
-                this,
-                "Divisa guardada: ${divisaSeleccionada.nombre}",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            // Navegar a Balance
-            navigateToBalance()
+            startActivity(Intent(this, BalanceActivity::class.java))
+            finish()
         }
     }
 
@@ -151,8 +195,7 @@ class DivisaActivity : AppCompatActivity() {
     }
 
     private fun navigateToBalance() {
-        // Ir a MainActivity o tu Activity principal con el Dashboard
-        val intent = Intent(this, BalanceActivity::class.java) // Cambia a tu Activity principal
+        val intent = Intent(this, BalanceActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
