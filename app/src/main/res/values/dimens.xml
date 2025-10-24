@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="category_icon_size">56dp</dimen>
+    <dimen name="category_icon_margin">8dp</dimen>
+    <dimen name="category_icon_padding">12dp</dimen>
+    <dimen name="category_icon_stroke">3dp</dimen>
+    <dimen name="category_color_size">44dp</dimen>
+    <dimen name="category_color_margin">12dp</dimen>
+    <dimen name="category_color_stroke">3dp</dimen>
+</resources>

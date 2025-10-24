@@ -5,6 +5,129 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blanco"
     tools:context=".CrearCategoriaActivity">
+
+    <ScrollView
+        android:id="@+id/svContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="24dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="32dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"
+                android:text="Crear categoria"
+                android:textStyle="bold"
+                style="@style/subTitulo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNombreCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de categoría"
+                app:boxCornerRadiusTopStart="0dp"
+                app:boxCornerRadiusTopEnd="0dp"
+                app:boxCornerRadiusBottomStart="0dp"
+                app:boxCornerRadiusBottomEnd="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietNombreCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textCapSentences"
+                    style="@style/textBalance" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/llTipoCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbGasto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="Gastos"
+                    android:textColor="@color/gris"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/roboto_regular" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbIngreso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingresos"
+                    android:textColor="@color/gris"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/roboto_regular" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvIconos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Iconos"
+                android:textStyle="bold"
+                style="@style/textBalance" />
+
+            <GridLayout
+                android:id="@+id/glIconos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="4"
+                android:columnOrderPreserved="false"
+                android:rowOrderPreserved="false" />
+
+            <TextView
+                android:id="@+id/tvColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Color"
+                android:textStyle="bold"
+                style="@style/textBalance" />
+
+            <LinearLayout
+                android:id="@+id/llColores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnadirCategoria"
+                style="@style/boton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="Añadir" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

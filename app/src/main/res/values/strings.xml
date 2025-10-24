@@ -3,4 +3,13 @@
 
     <string name="menu_open">Abrir menú</string>
     <string name="menu_close">Cerrar menú</string>
+    <string name="categoria_nombre_requerido">Ingrese un nombre para la categoría</string>
+    <string name="categoria_tipo_requerido">Seleccione un tipo de categoría</string>
+    <string name="categoria_icono_requerido">Seleccione un icono para la categoría</string>
+    <string name="categoria_color_requerido">Seleccione un color para la categoría</string>
+    <string name="categoria_usuario_no_encontrado">No se pudo obtener el usuario en sesión</string>
+    <string name="categoria_creada_exito">Categoría creada correctamente</string>
+    <string name="categoria_error_general">No se pudo crear la categoría</string>
+    <string name="categoria_icono_descripcion">Icono de categoría</string>
+    <string name="categoria_color_descripcion">Color de categoría</string>
 </resources>
