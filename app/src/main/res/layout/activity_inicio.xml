@@ -29,16 +29,51 @@
             app:title="BALANCE+"
             app:titleCentered="true" />
         </com.google.android.material.appbar.AppBarLayout>
-        <TextView
-            android:id="@+id/tvSaldoActual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="S/. 0.00"
-            android:textColor="@color/black"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/homeScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:clipToPadding="false"
+            android:padding="24dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvSaldoActual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="S/. 0.00"
+                    android:textColor="@color/black"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvListadoTransaccionesInicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTransaccionesInicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAnadirTransGasto"
@@ -56,7 +91,8 @@
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize" />
+            android:layout_marginTop="?attr/actionBarSize"
+            android:visibility="gone" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

@@ -12,4 +12,10 @@
     <string name="categoria_error_general">No se pudo crear la categoría</string>
     <string name="categoria_icono_descripcion">Icono de categoría</string>
     <string name="categoria_color_descripcion">Color de categoría</string>
+    <string name="categoria_agregar">Agregar</string>
+    <string name="categoria_volver">Volver</string>
+    <string name="transaccion_categoria_placeholder">Selecciona una categoría</string>
+    <string name="transaccion_categoria_requerida">Seleccione una categoría para continuar</string>
+    <string name="transaccion_guardada_exito">Gasto guardado correctamente</string>
+    <string name="transaccion_guardada_error">No se pudo guardar el gasto</string>
 </resources>

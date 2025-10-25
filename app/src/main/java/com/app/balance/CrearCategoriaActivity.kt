@@ -1,16 +1,17 @@
 package com.app.balance
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -35,6 +36,9 @@ class CrearCategoriaActivity : AppCompatActivity() {
     private lateinit var glIconos: GridLayout
     private lateinit var llColores: LinearLayout
     private lateinit var btnAnadirCategoria: MaterialButton
+    private lateinit var btnBack: AppCompatImageButton
+    private lateinit var cvPreviewIcon: MaterialCardView
+    private lateinit var ivPreviewIcon: AppCompatImageView
 
     private lateinit var dbHelper: AppDatabaseHelper
     private lateinit var database: SQLiteDatabase
@@ -42,6 +46,7 @@ class CrearCategoriaActivity : AppCompatActivity() {
 
     private var selectedTipoId: Int? = null
     private var selectedIconName: String? = null
+    private var selectedIconRes: Int? = null
     private var selectedColorHex: String? = null
 
     private var selectedIconCard: MaterialCardView? = null
@@ -88,6 +93,13 @@ class CrearCategoriaActivity : AppCompatActivity() {
         glIconos = findViewById(R.id.glIconos)
         llColores = findViewById(R.id.llColores)
         btnAnadirCategoria = findViewById(R.id.btnAnadirCategoria)
+        btnBack = findViewById(R.id.btnBack)
+        cvPreviewIcon = findViewById(R.id.cvPreviewIcon)
+        ivPreviewIcon = findViewById(R.id.ivPreviewIcon)
+
+        defaultIconColor = ContextCompat.getColor(this, R.color.gris)
+        btnBack.setOnClickListener { finish() }
+        updatePreviewIcon()
     }
 
     private fun setupNombreWatcher() {
@@ -184,12 +196,14 @@ class CrearCategoriaActivity : AppCompatActivity() {
         cardView.strokeWidth = strokeSize
 
         val iconRes = cardView.tag as? Int ?: return
+        selectedIconRes = iconRes
         selectedIconName = resources.getResourceEntryName(iconRes)
 
         val imageView = cardView.getChildAt(0) as? AppCompatImageView
         selectedIconImageView = imageView
         val colorToApply = selectedColorInt ?: defaultIconColor
         imageView?.imageTintList = ColorStateList.valueOf(colorToApply)
+        updatePreviewIcon()
     }
 
     private fun setupColorOptions() {
@@ -252,6 +266,7 @@ class CrearCategoriaActivity : AppCompatActivity() {
         selectedColorInt = colorInt
         selectedIconImageView?.imageTintList = ColorStateList.valueOf(colorInt)
         selectedColorHex = String.format(Locale.US, "#%08X", colorInt)
+        updatePreviewIcon()
     }
 
     private fun setupCreateButton() {
@@ -306,7 +321,13 @@ class CrearCategoriaActivity : AppCompatActivity() {
                 val resultado = categoriaDAO.insertarCategoria(categoria)
                 if (resultado != -1L) {
                     Toast.makeText(this, R.string.categoria_creada_exito, Toast.LENGTH_SHORT).show()
-                    setResult(RESULT_OK)
+                    setResult(
+                        RESULT_OK,
+                        Intent().apply {
+                            putExtra("categoria_id", resultado.toInt())
+                            putExtra("categoria_nombre", categoria.nombre)
+                        }
+                    )
                     finish()
                 } else {
                     Toast.makeText(this, R.string.categoria_error_general, Toast.LENGTH_SHORT).show()
@@ -315,6 +336,14 @@ class CrearCategoriaActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.categoria_error_general, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun updatePreviewIcon() {
+        val iconRes = selectedIconRes ?: R.drawable.ic_categoria
+        val tintColor = selectedColorInt ?: defaultIconColor
+        ivPreviewIcon.setImageResource(iconRes)
+        ivPreviewIcon.imageTintList = ColorStateList.valueOf(tintColor)
+        cvPreviewIcon.setCardBackgroundColor(ContextCompat.getColor(this, R.color.light_gray))
     }
 
     private fun getUserIdFromSession(): Int? {

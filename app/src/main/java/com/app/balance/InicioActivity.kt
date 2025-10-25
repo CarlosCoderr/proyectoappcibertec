@@ -1,7 +1,9 @@
 package com.app.balance
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -9,7 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.app.balance.adapters.TransaccionSimpleAdapter
+import com.app.balance.data.AppDatabaseHelper
+import com.app.balance.data.dao.TransaccionDAO
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
@@ -19,6 +28,13 @@ import java.util.Locale
 class InicioActivity : AppCompatActivity() {
 
     private lateinit var toolbar: MaterialToolbar
+    private lateinit var homeScroll: NestedScrollView
+    private lateinit var tvListadoTransacciones: TextView
+    private lateinit var rvTransacciones: RecyclerView
+    private lateinit var transaccionAdapter: TransaccionSimpleAdapter
+    private lateinit var dbHelper: AppDatabaseHelper
+    private lateinit var transaccionDAO: TransaccionDAO
+    private var userId: Int = -1
 
     private fun normalizePrefs() {
         val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
@@ -67,11 +83,35 @@ class InicioActivity : AppCompatActivity() {
         val drawerLayout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawerLayout)
         val navigationView = findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigationView)
 
+        homeScroll = findViewById(R.id.homeScroll)
+        tvListadoTransacciones = findViewById(R.id.tvListadoTransaccionesInicio)
+        rvTransacciones = findViewById(R.id.rvTransaccionesInicio)
+
+        dbHelper = AppDatabaseHelper(this)
+        val database = dbHelper.writableDatabase
+        transaccionDAO = TransaccionDAO(database, dbHelper)
+        userId = getUserIdFromSession() ?: -1
+
+        transaccionAdapter = TransaccionSimpleAdapter()
+        rvTransacciones.apply {
+            layoutManager = LinearLayoutManager(this@InicioActivity)
+            adapter = transaccionAdapter
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        }
+
 
     // Aplica insets SOLO al contenedor de contenido
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragmentContainer)) { v, insets ->
+        val fragmentContainer: View? = findViewById(R.id.fragmentContainer)
+        fragmentContainer?.let {
+            ViewCompat.setOnApplyWindowInsetsListener(it) { v, insets ->
+                val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, bars.bottom)
+                insets
+            }
+        }
+        ViewCompat.setOnApplyWindowInsetsListener(homeScroll) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, bars.bottom) // bottom si quieres evitar solape con nav bar
+            v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, bars.bottom)
             insets
         }
 
@@ -102,6 +142,8 @@ class InicioActivity : AppCompatActivity() {
                 .remove(currentFrag)
                 .commit()
         }
+        fragmentContainer?.visibility = View.GONE
+        homeScroll.visibility = View.VISIBLE
         // Inicio SIN título
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbar.title = ""
@@ -123,6 +165,8 @@ class InicioActivity : AppCompatActivity() {
                     toolbar.title = ""
                     toolbar.subtitle = null
                     fab?.show()
+                    homeScroll.visibility = View.VISIBLE
+                    fragmentContainer?.visibility = View.GONE
 
                     item.isChecked = true
                 }
@@ -138,6 +182,8 @@ class InicioActivity : AppCompatActivity() {
                     toolbar.title = "Configuración"
                     toolbar.subtitle = null
                     fab?.hide()
+                    homeScroll.visibility = View.GONE
+                    fragmentContainer?.visibility = View.VISIBLE
 
                     item.isChecked = true
                 }
@@ -153,6 +199,8 @@ class InicioActivity : AppCompatActivity() {
                     toolbar.title = "Perfil"
                     toolbar.subtitle = null
                     fab?.hide()
+                    homeScroll.visibility = View.GONE
+                    fragmentContainer?.visibility = View.VISIBLE
 
                     item.isChecked = true
                 }
@@ -162,8 +210,22 @@ class InicioActivity : AppCompatActivity() {
             true
         }
 
+        supportFragmentManager.addOnBackStackChangedListener {
+            val hasFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer) != null
+            if (hasFragment) {
+                homeScroll.visibility = View.GONE
+                fragmentContainer?.visibility = View.VISIBLE
+                fab?.hide()
+            } else {
+                homeScroll.visibility = View.VISIBLE
+                fragmentContainer?.visibility = View.GONE
+                fab?.show()
+            }
+        }
+
         // Mostrar el saldo centrado
         refreshCenteredBalanceText()
+        refreshTransaccionesList()
     }
 
     override fun onResume() {
@@ -171,6 +233,14 @@ class InicioActivity : AppCompatActivity() {
         normalizePrefs()
         refreshCenteredBalanceText()
         refreshHeader() // refresca el header al volver de Perfil/Registro/Divisa
+        refreshTransaccionesList()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (this::dbHelper.isInitialized) {
+            dbHelper.close()
+        }
     }
 
     /**
@@ -242,6 +312,34 @@ class InicioActivity : AppCompatActivity() {
         }
 
         tv.text = texto
+    }
+
+    private fun refreshTransaccionesList() {
+        if (!this::transaccionAdapter.isInitialized) return
+
+        if (userId <= 0) {
+            userId = getUserIdFromSession() ?: -1
+        }
+
+        val transacciones = if (userId > 0) {
+            transaccionDAO.obtenerTransaccionesPorUsuario(userId)
+        } else {
+            emptyList()
+        }
+
+        transaccionAdapter.submitList(transacciones)
+        val hasItems = transacciones.isNotEmpty()
+        tvListadoTransacciones.visibility = if (hasItems) View.VISIBLE else View.GONE
+        rvTransacciones.visibility = if (hasItems) View.VISIBLE else View.GONE
+    }
+
+    private fun getUserIdFromSession(): Int? {
+        val prefs: SharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        return if (prefs.contains("USER_ID")) {
+            prefs.getInt("USER_ID", -1).takeIf { it > 0 }
+        } else {
+            null
+        }
     }
 
     // ===== Header: Hola, nombre + correo =====
