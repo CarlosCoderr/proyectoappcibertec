@@ -10,15 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvTituloConf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Configuración"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="20dp" />
 
         <Switch
             android:id="@+id/swNotificaciones"

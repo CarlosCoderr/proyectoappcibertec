@@ -367,6 +367,19 @@ class RegistroActivity : AppCompatActivity() {
             false
         } else true
     }
+    private fun getGeneroSeleccionado(): String? {
+        return when {
+            chkHombre.isChecked -> "Hombre"
+            chkMujer.isChecked  -> "Mujer"
+            chkOtro.isChecked   -> "Otro"
+            else -> null
+
+        }
+
+    }
+
+
+
 
     private fun validateCelular(): Boolean {
         val celular = tietCelular.text.toString().trim()
@@ -488,10 +501,11 @@ class RegistroActivity : AppCompatActivity() {
                     val dia = tietDia.text.toString().trim().padStart(2, '0')
                     val fechaNacimiento = "$dia/$mes/$anio"
 
+                    // Puedes usar “Masculino/Femenino/Otro” (tu Perfil y util soportan ambos)
                     val genero = when {
                         chkHombre.isChecked -> "Masculino"
-                        chkMujer.isChecked -> "Femenino"
-                        else -> "Otro"
+                        chkMujer.isChecked  -> "Femenino"
+                        else                -> "Otro"
                     }
 
                     val celular = "$selectedCountryCode${tietCelular.text.toString().trim()}"
@@ -514,16 +528,22 @@ class RegistroActivity : AppCompatActivity() {
                         montoTotal = 0.0
                     )
 
+                    //  SOLO UNA VEZ
                     val idInsertado = usuarioDAO.insertarUsuario(nuevoUsuario)
 
                     withContext(Dispatchers.Main) {
                         if (idInsertado > 0) {
+                            //  Guardar género y avatar SOLO si el registro fue exitoso
+                            getSharedPreferences("AppPreferences", MODE_PRIVATE).edit()
+                                .putString("USER_GENDER", genero) // "Masculino"/"Femenino"/"Otro"
+                                .putInt("USER_AVATAR", com.app.balance.utils.avatarPorGenero(genero))
+                                .apply()
+
                             Toast.makeText(
                                 this@RegistroActivity,
                                 "¡Registro exitoso! Por favor inicia sesión",
                                 Toast.LENGTH_SHORT
                             ).show()
-
                             startActivity(Intent(this@RegistroActivity, LoginActivity::class.java))
                             finish()
                         } else {
@@ -551,6 +571,7 @@ class RegistroActivity : AppCompatActivity() {
         }
     }
 
+
     private fun hashearContrasena(contrasena: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contrasena.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
@@ -560,4 +581,5 @@ class RegistroActivity : AppCompatActivity() {
         super.onDestroy()
         dbHelper.close()
     }
+
 }

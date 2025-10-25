@@ -30,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
     private fun normalizePrefs() {
         val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
         val editor = prefs.edit()
+
+
         var changed = false
 
         // 1) Migrar divisa antigua → nueva
@@ -153,21 +155,30 @@ class LoginActivity : AppCompatActivity() {
                 val claveHasheada = hashearContrasena(clave)
 
                 if (usuario.contrasena == claveHasheada) {
-                    // Guardar sesión en SharedPreferences
+                    // Guardar sesión en SharedPreferences (EXTENSIÓN)
                     val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
                     val editor = prefs.edit()
+                        // (ya tenías estas)
                         .putInt("USER_ID", usuario.id)
                         .putString("USER_NOMBRE", "${usuario.nombre} ${usuario.apellido}")
                         .putString("USER_CORREO", usuario.email)
                         .putBoolean("SESION_ACTIVA", true)
 
-                    // Si tu usuario trae divisa asignada, opcionalmente la persistimos como DIVISA_ID
-                    // (Si no, DivisaActivity la pedirá y la guardará)
+                        //  lee PerfilFragment
+                        .putString("USER_NAME", usuario.nombre)
+                        .putString("USER_LAST", usuario.apellido)
+                        .putString("USER_MAIL", usuario.email)
+                        .putString("USER_PHONE", usuario.celular)
+                        .putString("USER_BIRTH", usuario.fechaNacimiento)
+                        .putString("USER_GENDER", usuario.genero)
+                        .putInt("USER_AVATAR", com.app.balance.utils.avatarPorGenero(usuario.genero))
+
+                    // (Opcional) si en algún momento guardas una foto real:
+                    // .putString("USER_PHOTO_URI", uriString)
+
                     if (usuario.divisaId > 0) {
                         editor.putInt("DIVISA_ID", usuario.divisaId)
-                        // Si en tu modelo no tienes símbolo/código aquí, no los toques; DivisaActivity los llenará.
                     }
-
                     editor.apply()
 
                     Toast.makeText(this, "¡Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()

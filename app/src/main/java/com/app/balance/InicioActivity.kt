@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentManager
@@ -14,12 +15,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.Locale
-import androidx.appcompat.app.AppCompatDelegate
 
 class InicioActivity : AppCompatActivity() {
 
     private lateinit var toolbar: MaterialToolbar
-
 
     private fun normalizePrefs() {
         val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
@@ -56,30 +55,26 @@ class InicioActivity : AppCompatActivity() {
             if (isDark) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
         )
 
-
         normalizePrefs()
         enableEdgeToEdge()
         setContentView(R.layout.activity_inicio)
-
-        // ingresa a transaccion activity
-        val fab = findViewById<FloatingActionButton>(R.id.btnAnadirTransGasto)
-        fab?.setOnClickListener {
-            startActivity(Intent(this, TransaccionGastoActivity::class.java))
-        }
-
-        // Insets para el DrawerLayout
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayout)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         // Toolbar + Toggle del Drawer (manteniendo tu estructura)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+
         val drawerLayout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawerLayout)
         val navigationView = findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigationView)
+
+
+    // Aplica insets SOLO al contenedor de contenido
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragmentContainer)) { v, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, bars.bottom) // bottom si quieres evitar solape con nav bar
+            insets
+        }
+
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
@@ -87,17 +82,18 @@ class InicioActivity : AppCompatActivity() {
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+        toolbar.navigationIcon?.setTint(getColor(R.color.black))
 
-        val header = navigationView.getHeaderView(0)
-        val tvName  = header.findViewById<TextView>(R.id.tvHeaderNombre)
-        val tvEmail = header.findViewById<TextView>(R.id.tvHeaderEmail)
+        // Header seguro
+        val header = navigationView.getHeaderView(0) ?: navigationView.inflateHeaderView(R.layout.menu_header)
+        // Inicializa header una vez
+        refreshHeader()
 
-        val prefs  = getSharedPreferences("AppPreferences", MODE_PRIVATE)
-        val name   = prefs.getString("USER_NAME", "") ?: ""
-        val email  = prefs.getString("USER_MAIL", "") ?: ""
-
-        tvName.text  = if (name.isNotBlank()) "Hola, $name" else "Hola usuari@"
-        tvEmail.text = email
+        // ingresa a transaccion activity
+        val fab = findViewById<FloatingActionButton>(R.id.btnAnadirTransGasto)
+        fab?.setOnClickListener {
+            startActivity(Intent(this, TransaccionGastoActivity::class.java))
+        }
 
         // ===== INICIO COMO ACTIVITY (sin fragmentos encima) =====
         val currentFrag = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
@@ -116,7 +112,7 @@ class InicioActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.nav_inicio -> {
-                    // Limpia TODO el back stack y quita fragment del contenedor
+                    // Limpia el back stack y quita fragment del contenedor
                     supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     supportFragmentManager.findFragmentById(R.id.fragmentContainer)?.let {
                         supportFragmentManager.beginTransaction().remove(it).commit()
@@ -166,7 +162,7 @@ class InicioActivity : AppCompatActivity() {
             true
         }
 
-        // Mostrar el saldo centrado (si falta config, redirige)
+        // Mostrar el saldo centrado
         refreshCenteredBalanceText()
     }
 
@@ -174,6 +170,7 @@ class InicioActivity : AppCompatActivity() {
         super.onResume()
         normalizePrefs()
         refreshCenteredBalanceText()
+        refreshHeader() // refresca el header al volver de Perfil/Registro/Divisa
     }
 
     /**
@@ -245,5 +242,33 @@ class InicioActivity : AppCompatActivity() {
         }
 
         tv.text = texto
+    }
+
+    // ===== Header: Hola, nombre + correo =====
+    private fun refreshHeader() {
+        val navigationView = findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigationView)
+        val header = navigationView.getHeaderView(0) ?: navigationView.inflateHeaderView(R.layout.menu_header)
+        val tvName  = header.findViewById<TextView>(R.id.tvHeaderNombre)
+        val tvEmail = header.findViewById<TextView>(R.id.tvHeaderEmail)
+
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+
+        var nombre = prefs.getString("USER_NAME", "") ?: ""
+        var apellido = prefs.getString("USER_LAST", "") ?: ""
+        var correo = prefs.getString("USER_MAIL", "") ?: ""
+
+        // fallbacks por compatibilidad con claves viejas
+        if (nombre.isBlank()) {
+            val full = prefs.getString("USER_NOMBRE", "") ?: ""
+            if (full.isNotBlank()) {
+                nombre = full.substringBefore(" ")
+                apellido = full.substringAfter(" ", "")
+            }
+        }
+        if (correo.isBlank()) correo = prefs.getString("USER_CORREO", "") ?: ""
+
+        val full = listOf(nombre, apellido).filter { it.isNotBlank() }.joinToString(" ")
+        tvName.text  = if (full.isNotBlank()) "Hola, $full" else "Hola usuari@"
+        tvEmail.text = correo
     }
 }

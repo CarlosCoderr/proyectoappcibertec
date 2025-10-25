@@ -6,22 +6,29 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".InicioActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
         <!-- Toolbar: el título va fijo, el SUBTÍTULO lo setea el código con el saldo formateado -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:backgroundTint="@color/gold"
+            android:background="@color/gold"
             app:titleTextColor="@color/black"
-            app:navigationIconTint="@color/gold"
+            app:navigationIconTint="@color/black"
             app:title="BALANCE+"
             app:titleCentered="true" />
+        </com.google.android.material.appbar.AppBarLayout>
         <TextView
             android:id="@+id/tvSaldoActual"
             android:layout_width="wrap_content"
@@ -61,5 +68,6 @@
         app:headerLayout="@layout/menu_header"
         app:menu="@menu/menu_nav"
         app:itemIconTint="@color/gold"
-        app:itemTextColor="@color/black" />
+        app:itemTextColor="@color/black"
+        android:fitsSystemWindows="true"/>
 </androidx.drawerlayout.widget.DrawerLayout>
