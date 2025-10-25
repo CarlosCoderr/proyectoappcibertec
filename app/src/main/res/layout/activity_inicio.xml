@@ -22,7 +22,6 @@
             app:navigationIconTint="@color/gold"
             app:title="BALANCE+"
             app:titleCentered="true" />
-
         <TextView
             android:id="@+id/tvSaldoActual"
             android:layout_width="wrap_content"
@@ -33,6 +32,17 @@
             android:textSize="34sp"
             android:textStyle="bold" />
 
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAnadirTransGasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="24dp"
+            android:contentDescription="Añadir transacción"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/gold"
+            app:tint="@color/black" />
 
         <!-- Contenedor de fragments (tu estructura original) -->
         <FrameLayout

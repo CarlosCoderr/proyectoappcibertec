@@ -1,5 +1,6 @@
 package com.app.balance.utils
 
+import com.app.balance.R
 import java.security.MessageDigest
 
 object ContrasenaUtil {
@@ -11,4 +12,9 @@ object ContrasenaUtil {
     fun verificar(contrasena: String, hash: String): Boolean {
         return hashear(contrasena) == hash
     }
+}
+fun avatarPorGenero(genero: String?): Int = when (genero?.lowercase()) {
+    "hombre", "masculino", "m" -> R.drawable.ic_hombre
+    "mujer", "femenino", "f"   -> R.drawable.ic_mujer
+    else                       -> R.drawable.ic_otro
 }

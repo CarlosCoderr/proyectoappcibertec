@@ -8,14 +8,18 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.Locale
+import androidx.appcompat.app.AppCompatDelegate
 
 class InicioActivity : AppCompatActivity() {
 
     private lateinit var toolbar: MaterialToolbar
+
 
     private fun normalizePrefs() {
         val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
@@ -44,9 +48,24 @@ class InicioActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // aplicar tema noche en configuracion
+        val isDark = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+            .getBoolean("CONF_TEMA_OSCURO", false)
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDark) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+        )
+
+
         normalizePrefs()
         enableEdgeToEdge()
         setContentView(R.layout.activity_inicio)
+
+        // ingresa a transaccion activity
+        val fab = findViewById<FloatingActionButton>(R.id.btnAnadirTransGasto)
+        fab?.setOnClickListener {
+            startActivity(Intent(this, TransaccionGastoActivity::class.java))
+        }
 
         // Insets para el DrawerLayout
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayout)) { v, insets ->
@@ -58,13 +77,94 @@ class InicioActivity : AppCompatActivity() {
         // Toolbar + Toggle del Drawer (manteniendo tu estructura)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
         val drawerLayout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawerLayout)
+        val navigationView = findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigationView)
+
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.app_name, R.string.app_name
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        val header = navigationView.getHeaderView(0)
+        val tvName  = header.findViewById<TextView>(R.id.tvHeaderNombre)
+        val tvEmail = header.findViewById<TextView>(R.id.tvHeaderEmail)
+
+        val prefs  = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val name   = prefs.getString("USER_NAME", "") ?: ""
+        val email  = prefs.getString("USER_MAIL", "") ?: ""
+
+        tvName.text  = if (name.isNotBlank()) "Hola, $name" else "Hola usuari@"
+        tvEmail.text = email
+
+        // ===== INICIO COMO ACTIVITY (sin fragmentos encima) =====
+        val currentFrag = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+        if (currentFrag != null) {
+            supportFragmentManager.beginTransaction()
+                .remove(currentFrag)
+                .commit()
+        }
+        // Inicio SIN título
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbar.title = ""
+        toolbar.subtitle = null
+
+        // ===== Navegación del Drawer =====
+        navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.nav_inicio -> {
+                    // Limpia TODO el back stack y quita fragment del contenedor
+                    supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    supportFragmentManager.findFragmentById(R.id.fragmentContainer)?.let {
+                        supportFragmentManager.beginTransaction().remove(it).commit()
+                    }
+
+                    // Inicio SIN título (y muestra el FAB)
+                    supportActionBar?.setDisplayShowTitleEnabled(false)
+                    toolbar.title = ""
+                    toolbar.subtitle = null
+                    fab?.show()
+
+                    item.isChecked = true
+                }
+
+                R.id.nav_config -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, com.app.balance.ui.ConfiguracionFragment())
+                        .addToBackStack(null)
+                        .commit()
+
+                    // Mostrar título solo aquí
+                    supportActionBar?.setDisplayShowTitleEnabled(true)
+                    toolbar.title = "Configuración"
+                    toolbar.subtitle = null
+                    fab?.hide()
+
+                    item.isChecked = true
+                }
+
+                R.id.nav_perfil -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, com.app.balance.ui.PerfilFragment())
+                        .addToBackStack(null)
+                        .commit()
+
+                    // Mostrar título solo aquí
+                    supportActionBar?.setDisplayShowTitleEnabled(true)
+                    toolbar.title = "Perfil"
+                    toolbar.subtitle = null
+                    fab?.hide()
+
+                    item.isChecked = true
+                }
+            }
+
+            drawerLayout.closeDrawers()
+            true
+        }
 
         // Mostrar el saldo centrado (si falta config, redirige)
         refreshCenteredBalanceText()

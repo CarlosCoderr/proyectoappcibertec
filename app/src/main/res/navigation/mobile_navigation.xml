@@ -10,11 +10,12 @@
         android:label="activity_inicio"
         tools:layout="@layout/activity_inicio" />
     <fragment
-        android:id="@+id/perfilFragment2"
-        android:name="com.app.balance.ui.PerfilFragment"
-        android:label="PerfilFragment" />
-    <fragment
-        android:id="@+id/configuracionFragment2"
+        android:id="@+id/configuracionFragment"
         android:name="com.app.balance.ui.ConfiguracionFragment"
         android:label="ConfiguracionFragment" />
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.app.balance.ui.PerfilFragment"
+        android:label="PerfilFragment" />
+
 </navigation>
