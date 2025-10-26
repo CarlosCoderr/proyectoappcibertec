@@ -36,20 +36,12 @@
                 android:layout_weight="1"
                 android:text="Añadir transacciones"
                 android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textStyle="normal"
+                android:fontFamily="sans-serif-medium"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Gasto"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
 
 
         <LinearLayout
@@ -71,7 +63,7 @@
                 android:maxLength="9"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gris"
-                android:textSize="34sp"
+                android:textSize="28sp"
                 android:padding="10dp"
                 android:textStyle="bold" />
 
@@ -92,8 +84,8 @@
             android:layout_marginTop="24dp"
             android:text="Categorías"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-medium"/>
 
         <TextView
             android:id="@+id/tvCategoriaSeleccionada"
@@ -129,12 +121,13 @@
                 android:layout_height="wrap_content"
                 android:text="Fecha de gasto: "
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-medium"/>
 
             <TextView
                 android:id="@+id/tvFechaGasto"
                 android:layout_width="0dp"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
@@ -145,9 +138,9 @@
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/black"
                 android:padding="12dp"
-                android:text="Seleccionar fecha"
+                android:text="Ingresa una fecha"
                 android:textColor="@color/gris"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
 
@@ -157,8 +150,8 @@
             android:layout_marginTop="24dp"
             android:text="Comentario"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-medium"/>
 
         <EditText
             android:id="@+id/etComentario"
@@ -167,11 +160,12 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/et_background_gold"
             android:gravity="top"
-            android:hint="Ingrese un breve comentario de gasto"
+            android:hint="Ingrese un comentario de gasto"
             android:inputType="textMultiLine"
             android:maxLength="50"
             android:minLines="3"
-            android:padding="12dp"
+            android:padding="10dp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:textColorHint="@color/gris" />
 
@@ -192,11 +186,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="AÑADIR GASTO"
-            android:textColor="#121212"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:backgroundTint="#FFC107"
-            app:cornerRadius="12dp" />
+            style="@style/boton" />
 
         <TextView
             android:id="@+id/tvListadoTransacciones"
@@ -219,4 +209,5 @@
             android:visibility="gone" />
 
     </LinearLayout>
+
 </ScrollView>

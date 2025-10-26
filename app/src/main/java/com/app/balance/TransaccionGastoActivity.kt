@@ -8,7 +8,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -32,6 +31,14 @@ import java.util.Locale
 
 class TransaccionGastoActivity : AppCompatActivity() {
 
+
+    companion object {
+        const val EXTRA_MODO_EDICION = "MODO_EDICION"
+        const val EXTRA_TRANSACCION_ID = "TRANSACCION_ID"
+    }
+    private var isEditMode = false
+    private var editingId: Int = -1
+
     private val cal = Calendar.getInstance()
     private var fechaISO: String =
         SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(cal.time)
@@ -44,7 +51,6 @@ class TransaccionGastoActivity : AppCompatActivity() {
     private var categoriaSeleccionada: Categoria? = null
     private lateinit var categoriaAdapter: CategoriaCarouselAdapter
 
-    // Recibir resultado desde CrearCategoriaActivity (opcionalmente nombre)
     private val crearCategoriaLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -105,18 +111,23 @@ class TransaccionGastoActivity : AppCompatActivity() {
 
         loadCategorias()
 
-        // Fecha inicial
-        tvFechaGasto.text =
-            SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(cal.time)
+
+        isEditMode = intent?.getBooleanExtra(EXTRA_MODO_EDICION, false) == true
+        editingId = intent?.getIntExtra(EXTRA_TRANSACCION_ID, -1) ?: -1
+
+
+        if (!isEditMode) {
+            tvFechaGasto.text = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(cal.time)
+        }
+
+
         tvFechaGasto.setOnClickListener {
             DatePickerDialog(
                 this,
                 { _, y, m, d ->
                     cal.set(y, m, d)
-                    fechaISO =
-                        SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(cal.time)
-                    tvFechaGasto.text =
-                        SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(cal.time)
+                    fechaISO = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(cal.time)
+                    tvFechaGasto.text = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(cal.time)
                 },
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
@@ -124,7 +135,7 @@ class TransaccionGastoActivity : AppCompatActivity() {
             ).show()
         }
 
-        // Contador comentario 0/50
+
         etComentario.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -133,7 +144,42 @@ class TransaccionGastoActivity : AppCompatActivity() {
             }
         })
 
-        // Guardar transacción
+
+        if (isEditMode && editingId > 0) {
+
+            (btnGuardar as? MaterialButton)?.text = "Guardar cambios"
+
+            val detalle = transaccionDAO.obtenerTransaccionPorId(editingId)
+            if (detalle != null) {
+                // Monto
+                etMonto.setText(
+                    String.format(Locale.getDefault(), "%.2f", detalle.transaccion.monto)
+                )
+
+                detalle.transaccion.fecha?.let { iso ->
+                    fechaISO = iso
+
+                    val inFmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val outFmt = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+                    val show = runCatching { outFmt.format(inFmt.parse(iso)!!) }.getOrElse { iso }
+                    tvFechaGasto.text = show
+
+
+                    runCatching {
+                        cal.time = inFmt.parse(iso)!!
+                    }
+                }
+
+                etComentario.setText(detalle.transaccion.comentario ?: "")
+
+
+                loadCategorias(detalle.transaccion.categoriaId)
+            } else {
+                Toast.makeText(this, "No se pudo cargar la transacción", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Guardar transacción (crear o actualizar)
         btnGuardar.setOnClickListener {
             val monto = etMonto.text?.toString()
                 ?.replace(',', '.')?.toDoubleOrNull() ?: 0.0
@@ -151,27 +197,51 @@ class TransaccionGastoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val resultado = transaccionDAO.insertarTransaccion(
-                Transaccion(
-                    categoriaId = categoria.id,
-                    monto = monto,
-                    fecha = fechaISO,
-                    comentario = comentario.takeIf { it.isNotEmpty() },
-                    usuarioId = userId
+            if (isEditMode && editingId > 0) {
+                // ==== UPDATE ====
+                val filas = transaccionDAO.actualizarTransaccion(
+                    Transaccion(
+                        id = editingId,
+                        categoriaId = categoria.id,
+                        monto = monto,
+                        fecha = fechaISO, // en ISO para DB
+                        comentario = comentario.takeIf { it.isNotEmpty() },
+                        usuarioId = userId
+                    )
                 )
-            )
-
-            if (resultado != -1L) {
-                Toast.makeText(this, R.string.transaccion_guardada_exito, Toast.LENGTH_SHORT).show()
-                setResult(RESULT_OK, Intent().putExtra("saved", true))
-                finish()
+                if (filas > 0) {
+                    Toast.makeText(this, "Cambios guardados", Toast.LENGTH_SHORT).show()
+                    setResult(RESULT_OK, Intent().putExtra("updated", true))
+                    finish()
+                } else {
+                    Toast.makeText(this, "No se pudo actualizar", Toast.LENGTH_SHORT).show()
+                }
             } else {
-                Toast.makeText(this, R.string.transaccion_guardada_error, Toast.LENGTH_SHORT).show()
+                // ==== INSERT ====
+                val resultado = transaccionDAO.insertarTransaccion(
+                    Transaccion(
+                        categoriaId = categoria.id,
+                        monto = monto,
+                        fecha = fechaISO,
+                        comentario = comentario.takeIf { it.isNotEmpty() },
+                        usuarioId = userId
+                    )
+                )
+
+                if (resultado != -1L) {
+                    Toast.makeText(this, R.string.transaccion_guardada_exito, Toast.LENGTH_SHORT).show()
+                    setResult(RESULT_OK, Intent().putExtra("saved", true))
+                    finish()
+                } else {
+                    Toast.makeText(this, R.string.transaccion_guardada_error, Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
-        // Mostrar estado inicial de categoría
-        tvCategoriaSel.text = getString(R.string.transaccion_categoria_placeholder)
+
+        if (!isEditMode) {
+            tvCategoriaSel.text = getString(R.string.transaccion_categoria_placeholder)
+        }
     }
 
     override fun onDestroy() {

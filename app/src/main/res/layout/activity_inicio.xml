@@ -84,7 +84,9 @@
             android:contentDescription="Añadir transacción"
             android:src="@android:drawable/ic_input_add"
             app:backgroundTint="@color/gold"
-            app:tint="@color/black" />
+            app:tint="@color/black"
+            />
+
 
         <!-- Contenedor de fragments (tu estructura original) -->
         <FrameLayout

@@ -170,4 +170,49 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
             arrayOf(categoriaId.toString())
         )
     }
+
+    /**
+     * NUEVO: obtener una transacción por ID, incluyendo la categoría y el tipo.
+     * Útil para "Editar" desde el diálogo de detalles.
+     */
+    fun obtenerTransaccionPorId(id: Int): TransaccionConDetalles? {
+        val query = """
+            SELECT t.*, c.*, tc.* 
+            FROM ${AppDatabaseHelper.TABLE_TRANSACCIONES} t
+            JOIN ${AppDatabaseHelper.TABLE_CATEGORIAS} c 
+                ON t.${AppDatabaseHelper.COL_TRANSACCION_CATEGORIA_ID} = c.${AppDatabaseHelper.COL_CATEGORIA_ID}
+            JOIN ${AppDatabaseHelper.TABLE_TIPOS_CATEGORIA} tc 
+                ON c.${AppDatabaseHelper.COL_CATEGORIA_TIPO_ID} = tc.${AppDatabaseHelper.COL_TIPO_ID}
+            WHERE t.${AppDatabaseHelper.COL_TRANSACCION_ID} = ?
+            LIMIT 1
+        """.trimIndent()
+
+        val cursor = db.rawQuery(query, arrayOf(id.toString()))
+        var result: TransaccionConDetalles? = null
+        if (cursor.moveToFirst()) {
+            val transaccion = Transaccion(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_ID)),
+                categoriaId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_CATEGORIA_ID)),
+                monto = cursor.getDouble(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_MONTO)),
+                fecha = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_FECHA)),
+                comentario = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_COMENTARIO)),
+                usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_USUARIO_ID))
+            )
+            val categoria = Categoria(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_ID)),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_NOMBRE)),
+                icono = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_ICONO)),
+                usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_USUARIO_ID)),
+                tipoCategoriaId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_TIPO_ID)),
+                rutaImagen = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_RUTA_IMAGEN))
+            )
+            val tipoCategoria = TipoCategoria(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TIPO_ID)),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TIPO_NOMBRE))
+            )
+            result = TransaccionConDetalles(transaccion, categoria, tipoCategoria)
+        }
+        cursor.close()
+        return result
+    }
 }

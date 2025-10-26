@@ -41,13 +41,13 @@ class InicioActivity : AppCompatActivity() {
         val editor = prefs.edit()
         var changed = false
 
-        // 1) Migrar divisa antigua → nueva
+
         val legacyUserDivisaId = prefs.getInt("USER_DIVISA_ID", -1)
         if (prefs.getInt("DIVISA_ID", -1) <= 0 && legacyUserDivisaId > 0) {
             editor.putInt("DIVISA_ID", legacyUserDivisaId); changed = true
         }
 
-        // 2) Migrar saldo antiguo → nuevo
+
         val legacySaldo = prefs.getString("SALDO_INICIAL", null)
         if (!prefs.contains("BALANCE_INICIAL") && !legacySaldo.isNullOrBlank()) {
             editor.putString("BALANCE_INICIAL", legacySaldo); changed = true
@@ -64,7 +64,7 @@ class InicioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // aplicar tema noche en configuracion
+
         val isDark = getSharedPreferences("AppPreferences", MODE_PRIVATE)
             .getBoolean("CONF_TEMA_OSCURO", false)
         AppCompatDelegate.setDefaultNightMode(
@@ -75,10 +75,9 @@ class InicioActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_inicio)
 
-        // Toolbar + Toggle del Drawer (manteniendo tu estructura)
+
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
 
         val drawerLayout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawerLayout)
         val navigationView = findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigationView)
@@ -100,7 +99,93 @@ class InicioActivity : AppCompatActivity() {
         }
 
 
-    // Aplica insets SOLO al contenedor de contenido
+        val gestureDetector = android.view.GestureDetector(
+            this,
+            object : android.view.GestureDetector.SimpleOnGestureListener() {
+                override fun onSingleTapUp(e: android.view.MotionEvent): Boolean = true
+            }
+        )
+
+        rvTransacciones.addOnItemTouchListener(object : androidx.recyclerview.widget.RecyclerView.SimpleOnItemTouchListener() {
+            override fun onInterceptTouchEvent(rv: androidx.recyclerview.widget.RecyclerView, e: android.view.MotionEvent): Boolean {
+                val child = rv.findChildViewUnder(e.x, e.y) ?: return false
+                if (!gestureDetector.onTouchEvent(e)) return false
+
+                val pos = rv.getChildAdapterPosition(child)
+                if (pos == androidx.recyclerview.widget.RecyclerView.NO_POSITION) return false
+
+                val item = transaccionAdapter.currentList[pos]
+
+                val ivDelete = child.findViewById<View>(R.id.ivDeleteTransaccion)
+                if (isTouchInsideView(ivDelete, e)) {
+                    com.google.android.material.dialog.MaterialAlertDialogBuilder(this@InicioActivity)
+                        .setTitle("Eliminar transacción")
+                        .setMessage("¿Seguro que deseas eliminar esta transacción?\nEsta acción no se puede deshacer.")
+                        .setNegativeButton("Cancelar", null)
+                        .setPositiveButton("Eliminar") { _, _ ->
+                            val filas = transaccionDAO.eliminarTransaccion(item.transaccion.id)
+                            if (filas > 0) {
+                                android.widget.Toast.makeText(
+                                    this@InicioActivity,
+                                    "Transacción eliminada",
+                                    android.widget.Toast.LENGTH_SHORT
+                                ).show()
+                                refreshTransaccionesList()
+                            } else {
+                                android.widget.Toast.makeText(
+                                    this@InicioActivity,
+                                    "No se pudo eliminar",
+                                    android.widget.Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                        .show()
+                    return true
+                }
+
+
+                val montoFmt = java.lang.String.format(
+                    java.util.Locale.getDefault(),
+                    "S/ %.2f",
+                    item.transaccion.monto
+                )
+
+                val iso = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+                val out = java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.getDefault())
+                val fechaFmt = runCatching { out.format(iso.parse(item.transaccion.fecha)!!) }
+                    .getOrElse { item.transaccion.fecha }
+
+                val dialog = com.app.balance.ui.TransaccionDetalleDialogFragment.newInstance(
+                    id = item.transaccion.id,
+                    categoria = item.categoria.nombre,
+                    montoFormateado = montoFmt,
+                    fechaFormateada = fechaFmt,
+                    comentario = item.transaccion.comentario
+                )
+                dialog.show(supportFragmentManager, "detalleTransaccion")
+
+                return true
+            }
+        })
+
+
+
+        supportFragmentManager.setFragmentResultListener(
+            com.app.balance.ui.TransaccionDetalleDialogFragment.REQ_EDIT,
+            this
+        ) { _, bundle ->
+            val id = bundle.getInt(com.app.balance.ui.TransaccionDetalleDialogFragment.KEY_ID, -1)
+            if (id != -1) {
+
+                startActivity(
+                    Intent(this, TransaccionGastoActivity::class.java)
+                        .putExtra("MODO_EDICION", true)
+                        .putExtra("TRANSACCION_ID", id)
+                )
+            }
+        }
+
+
         val fragmentContainer: View? = findViewById(R.id.fragmentContainer)
         fragmentContainer?.let {
             ViewCompat.setOnApplyWindowInsetsListener(it) { v, insets ->
@@ -115,7 +200,6 @@ class InicioActivity : AppCompatActivity() {
             insets
         }
 
-
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.app_name, R.string.app_name
@@ -124,18 +208,19 @@ class InicioActivity : AppCompatActivity() {
         toggle.syncState()
         toolbar.navigationIcon?.setTint(getColor(R.color.black))
 
-        // Header seguro
+
         val header = navigationView.getHeaderView(0) ?: navigationView.inflateHeaderView(R.layout.menu_header)
-        // Inicializa header una vez
+
         refreshHeader()
 
-        // ingresa a transaccion activity
+
         val fab = findViewById<FloatingActionButton>(R.id.btnAnadirTransGasto)
         fab?.setOnClickListener {
-            startActivity(Intent(this, TransaccionGastoActivity::class.java))
+            com.app.balance.ui.AccionesInicioBottomSheet()
+                .show(supportFragmentManager, "acciones-inicio")
         }
 
-        // ===== INICIO COMO ACTIVITY (sin fragmentos encima) =====
+
         val currentFrag = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         if (currentFrag != null) {
             supportFragmentManager.beginTransaction()
@@ -154,13 +239,13 @@ class InicioActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.nav_inicio -> {
-                    // Limpia el back stack y quita fragment del contenedor
+
                     supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     supportFragmentManager.findFragmentById(R.id.fragmentContainer)?.let {
                         supportFragmentManager.beginTransaction().remove(it).commit()
                     }
 
-                    // Inicio SIN título (y muestra el FAB)
+
                     supportActionBar?.setDisplayShowTitleEnabled(false)
                     toolbar.title = ""
                     toolbar.subtitle = null
@@ -177,7 +262,7 @@ class InicioActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
 
-                    // Mostrar título solo aquí
+
                     supportActionBar?.setDisplayShowTitleEnabled(true)
                     toolbar.title = "Configuración"
                     toolbar.subtitle = null
@@ -194,7 +279,7 @@ class InicioActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
 
-                    // Mostrar título solo aquí
+
                     supportActionBar?.setDisplayShowTitleEnabled(true)
                     toolbar.title = "Perfil"
                     toolbar.subtitle = null
@@ -223,7 +308,7 @@ class InicioActivity : AppCompatActivity() {
             }
         }
 
-        // Mostrar el saldo centrado
+
         refreshCenteredBalanceText()
         refreshTransaccionesList()
     }
@@ -232,7 +317,7 @@ class InicioActivity : AppCompatActivity() {
         super.onResume()
         normalizePrefs()
         refreshCenteredBalanceText()
-        refreshHeader() // refresca el header al volver de Perfil/Registro/Divisa
+        refreshHeader()
         refreshTransaccionesList()
     }
 
@@ -243,14 +328,10 @@ class InicioActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Muestra el saldo actual centrado en el TextView tvSaldoActual.
-     * Si falta la configuración básica (divisa o monto), redirige al paso correspondiente.
-     */
     private fun refreshCenteredBalanceText() {
         val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
 
-        // Reglas de "config básica"
+
         val sesionActiva = prefs.getBoolean("SESION_ACTIVA", false)
         if (!sesionActiva) {
             startActivity(
@@ -289,21 +370,21 @@ class InicioActivity : AppCompatActivity() {
 
         val tv = findViewById<TextView>(R.id.tvSaldoActual)
 
-        // Normaliza posible coma decimal y da formato local
+
         val texto = try {
             val normalized = rawMonto!!.replace(',', '.') // soporta "150,75"
             val number = BigDecimal(normalized)
             val nf = NumberFormat.getNumberInstance(Locale.getDefault())
             val formatted = nf.format(number)
 
-            // Si hay símbolo, lo anteponemos; si no, dejamos el código al final.
+
             if (!simbolo.isNullOrBlank()) {
                 "$simbolo $formatted"
             } else {
                 "$formatted ${if (!codigo.isNullOrBlank()) codigo else ""}".trim()
             }
         } catch (_: Exception) {
-            // En caso de error, muestra crudo con fallback
+
             if (!simbolo.isNullOrBlank()) {
                 "$simbolo ${rawMonto ?: ""}"
             } else {
@@ -342,7 +423,7 @@ class InicioActivity : AppCompatActivity() {
         }
     }
 
-    // ===== Header: Hola, nombre + correo =====
+
     private fun refreshHeader() {
         val navigationView = findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigationView)
         val header = navigationView.getHeaderView(0) ?: navigationView.inflateHeaderView(R.layout.menu_header)
@@ -355,7 +436,7 @@ class InicioActivity : AppCompatActivity() {
         var apellido = prefs.getString("USER_LAST", "") ?: ""
         var correo = prefs.getString("USER_MAIL", "") ?: ""
 
-        // fallbacks por compatibilidad con claves viejas
+
         if (nombre.isBlank()) {
             val full = prefs.getString("USER_NOMBRE", "") ?: ""
             if (full.isNotBlank()) {
@@ -368,5 +449,19 @@ class InicioActivity : AppCompatActivity() {
         val full = listOf(nombre, apellido).filter { it.isNotBlank() }.joinToString(" ")
         tvName.text  = if (full.isNotBlank()) "Hola, $full" else "Hola usuari@"
         tvEmail.text = correo
+    }
+
+
+    private fun isTouchInsideView(view: View?, e: android.view.MotionEvent): Boolean {
+        if (view == null) return false
+        val location = IntArray(2)
+        view.getLocationOnScreen(location)
+        val x = e.rawX
+        val y = e.rawY
+        val left = location[0]
+        val top = location[1]
+        val right = left + view.width
+        val bottom = top + view.height
+        return x >= left && x <= right && y >= top && y <= bottom
     }
 }

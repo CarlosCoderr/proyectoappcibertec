@@ -15,7 +15,7 @@
         app:cardUseCompatPadding="false"
         app:cardElevation="0dp"
         app:strokeWidth="2dp"
-        app:strokeColor="@color/gold"
+        app:strokeColor="@color/black"
         app:cardBackgroundColor="?attr/colorSurface">
 
         <ImageView
@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:contentDescription="@null"
             app:srcCompat="@android:drawable/ic_input_add"
-            android:tint="@color/gold"/>
+            android:tint="@color/black"/>
     </com.google.android.material.card.MaterialCardView>
 
     <TextView

@@ -37,7 +37,6 @@ class DivisaActivity : AppCompatActivity() {
 
     private var todasLasDivisas = mutableListOf<Divisa>()
 
-    // —— Normaliza claves legacy por si algún compañero aún escribe con nombres antiguos
     private fun normalizePrefs() {
         val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
         val editor = prefs.edit()
@@ -70,7 +69,7 @@ class DivisaActivity : AppCompatActivity() {
         val userCorreo = prefs.getString("USER_CORREO", null)
         val sesionActiva = prefs.getBoolean("SESION_ACTIVA", false)
 
-        // —— Defensa de sesión
+
         if (!sesionActiva || userId == -1 || userCorreo.isNullOrBlank()) {
             startActivity(
                 Intent(this, LoginActivity::class.java)
@@ -80,7 +79,7 @@ class DivisaActivity : AppCompatActivity() {
             return
         }
 
-        // —— Guard de ruteo: si ya hay divisa y falta monto → ir a Balance; si todo está, ir a Inicio
+
         val divisaId = prefs.getInt("DIVISA_ID", -1)
         val divisaCodigo = prefs.getString("DIVISA_CODIGO", null)
         val hasDivisa = (divisaId > 0) || !divisaCodigo.isNullOrBlank()
@@ -88,7 +87,7 @@ class DivisaActivity : AppCompatActivity() {
         if (hasDivisa && !hasMonto) { /* ir a Balance */ }
         if (hasDivisa && hasMonto)  { /* ir a Inicio   */ }
 
-        // —— UI
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_divisa)
 
@@ -152,7 +151,7 @@ class DivisaActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // —— Guardar divisa en SharedPreferences y forzar reingreso de monto
+
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
             prefs.edit()
                 .putInt("DIVISA_ID", divisaSeleccionada.id)           // puede ser 0; no pasa nada con la regla nueva

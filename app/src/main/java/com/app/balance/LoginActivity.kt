@@ -34,19 +34,19 @@ class LoginActivity : AppCompatActivity() {
 
         var changed = false
 
-        // 1) Migrar divisa antigua → nueva
+
         val legacyUserDivisaId = prefs.getInt("USER_DIVISA_ID", -1)
         if (prefs.getInt("DIVISA_ID", -1) <= 0 && legacyUserDivisaId > 0) {
             editor.putInt("DIVISA_ID", legacyUserDivisaId); changed = true
         }
 
-        // 2) Migrar saldo antiguo → nuevo
+
         val legacySaldo = prefs.getString("SALDO_INICIAL", null)
         if (!prefs.contains("BALANCE_INICIAL") && !legacySaldo.isNullOrBlank()) {
             editor.putString("BALANCE_INICIAL", legacySaldo); changed = true
         }
 
-        // 3) Migrar flag de bienvenida antiguo → nuevo
+
         if (prefs.getBoolean("welcome_shown", false) && !prefs.getBoolean("WELCOME_SHOWN", false)) {
             editor.putBoolean("WELCOME_SHOWN", true); changed = true
         }
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         normalizePrefs()
 
-        // —— Guard de ruteo: si ya hay sesión activa, saltar al paso que falte (divisa / monto / inicio)
+
         val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
         if (prefs.getBoolean("SESION_ACTIVA", false)) {
             val hasDivisa = (prefs.getInt("DIVISA_ID", -1) > 0) || !prefs.getString("DIVISA_CODIGO", null).isNullOrBlank()
@@ -147,18 +147,18 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.text = "Verificando..."
 
         try {
-            // Obtener usuario por correo
+
             val usuario = usuarioDAO.obtenerUsuarioPorEmail(correo)
 
             if (usuario != null) {
-                // Verificar contraseña (hashear y comparar)
+
                 val claveHasheada = hashearContrasena(clave)
 
                 if (usuario.contrasena == claveHasheada) {
-                    // Guardar sesión en SharedPreferences (EXTENSIÓN)
+
                     val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
                     val editor = prefs.edit()
-                        // (ya tenías estas)
+
                         .putInt("USER_ID", usuario.id)
                         .putString("USER_NOMBRE", "${usuario.nombre} ${usuario.apellido}")
                         .putString("USER_CORREO", usuario.email)
@@ -173,8 +173,7 @@ class LoginActivity : AppCompatActivity() {
                         .putString("USER_GENDER", usuario.genero)
                         .putInt("USER_AVATAR", com.app.balance.utils.avatarPorGenero(usuario.genero))
 
-                    // (Opcional) si en algún momento guardas una foto real:
-                    // .putString("USER_PHOTO_URI", uriString)
+
 
                     if (usuario.divisaId > 0) {
                         editor.putInt("DIVISA_ID", usuario.divisaId)
@@ -183,7 +182,7 @@ class LoginActivity : AppCompatActivity() {
 
                     Toast.makeText(this, "¡Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
 
-                    // —— Ruteo post-login: si falta algo, pedirlo. Si está completo, ir a Inicio.
+
                     val hasDivisa = prefs.getInt("DIVISA_ID", -1) > 0
                     val hasMonto  = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
 
@@ -218,9 +217,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Hashea una contraseña usando SHA-256
-     */
+
     private fun hashearContrasena(contrasena: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contrasena.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }

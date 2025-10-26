@@ -68,12 +68,12 @@ class RegistroActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_registro)
 
-        // Inicializar BD
+
         dbHelper = AppDatabaseHelper(this)
         val db = dbHelper.writableDatabase
         usuarioDAO = UsuarioDAO(db, dbHelper)
 
-        // Inicializar repositorio de países
+
         val paisService = PaisesApiClientRegistro.crearServicio()
         paisRepository = PaisRepositoryRegistro(paisService)
 
@@ -501,7 +501,7 @@ class RegistroActivity : AppCompatActivity() {
                     val dia = tietDia.text.toString().trim().padStart(2, '0')
                     val fechaNacimiento = "$dia/$mes/$anio"
 
-                    // Puedes usar “Masculino/Femenino/Otro” (tu Perfil y util soportan ambos)
+
                     val genero = when {
                         chkHombre.isChecked -> "Masculino"
                         chkMujer.isChecked  -> "Femenino"
@@ -512,7 +512,7 @@ class RegistroActivity : AppCompatActivity() {
                     val clave = tietClave.text.toString()
                     val claveHasheada = hashearContrasena(clave)
 
-                    // Obtener ID de divisa (usar 1 como defecto)
+
                     val indexPaisSeleccionado = paises.indexOfFirst { it.codigo == selectedCountryCode }
                     val divisaId = if (indexPaisSeleccionado != -1) paises[indexPaisSeleccionado].id else 1
 
