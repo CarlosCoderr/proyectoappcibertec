@@ -17,11 +17,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.balance.adapters.DivisaAdapter
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.app.balance.data.AppDatabaseHelper
 import com.app.balance.data.dao.DivisaDAO
 import com.app.balance.data.dao.UsuarioDAO
 =======
 >>>>>>> origin/main
+=======
+import com.app.balance.data.AppDatabaseHelper
+import com.app.balance.data.dao.DivisaDAO
+import com.app.balance.data.dao.UsuarioDAO
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import com.app.balance.model.CountryCode
 import com.app.balance.model.Divisa
 import com.app.balance.network.apiClient.PaisesApiClientDivisa
@@ -43,6 +49,7 @@ class DivisaActivity : AppCompatActivity() {
 
     private var todasLasDivisas = mutableListOf<Divisa>()
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +106,10 @@ class DivisaActivity : AppCompatActivity() {
 
 
 >>>>>>> origin/main
+=======
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         enableEdgeToEdge()
         setContentView(R.layout.activity_divisa)
 
@@ -114,9 +125,13 @@ class DivisaActivity : AppCompatActivity() {
         setupSearchListener()
         setupBoton()
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> origin/main
+=======
+
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         cargarDivisas()
     }
 
@@ -167,6 +182,9 @@ class DivisaActivity : AppCompatActivity() {
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
             prefs.edit()
                 .putString("TEMP_DIVISA_CODIGO", divisaSeleccionada.codigo)
@@ -181,6 +199,7 @@ class DivisaActivity : AppCompatActivity() {
             ).show()
 
             navigateToBalance()
+<<<<<<< HEAD
 =======
 
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
@@ -195,6 +214,8 @@ class DivisaActivity : AppCompatActivity() {
             startActivity(Intent(this, BalanceActivity::class.java))
             finish()
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         }
     }
 
@@ -232,7 +253,11 @@ class DivisaActivity : AppCompatActivity() {
         finish()
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

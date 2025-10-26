@@ -19,9 +19,13 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
             put(AppDatabaseHelper.COL_USUARIO_DIVISA_ID, usuario.divisaId)
             put(AppDatabaseHelper.COL_USUARIO_MONTO_TOTAL, usuario.montoTotal)
 <<<<<<< HEAD
+<<<<<<< HEAD
             put(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL, usuario.fotoPerfil)
 =======
 >>>>>>> origin/main
+=======
+            put(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL, usuario.fotoPerfil)
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         }
         return db.insert(AppDatabaseHelper.TABLE_USUARIOS, null, valores)
     }
@@ -48,11 +52,16 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
                 contrasena = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_CONTRASENA)),
                 divisaId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_DIVISA_ID)),
 <<<<<<< HEAD
+<<<<<<< HEAD
                 montoTotal = cursor.getDouble(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_MONTO_TOTAL)),
                 fotoPerfil = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL))
 =======
                 montoTotal = cursor.getDouble(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_MONTO_TOTAL))
 >>>>>>> origin/main
+=======
+                montoTotal = cursor.getDouble(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_MONTO_TOTAL)),
+                fotoPerfil = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL))
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             )
             cursor.close()
             usuario
@@ -106,10 +115,14 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     fun actualizarFotoPerfil(usuarioId: Int, rutaFoto: String?): Int {
         val valores = ContentValues().apply {
             put(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL, rutaFoto)
+<<<<<<< HEAD
 =======
     fun actualizarUsuario(usuario: Usuario): Int {
         val valores = ContentValues().apply {
@@ -118,12 +131,17 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
             put(AppDatabaseHelper.COL_USUARIO_CELULAR, usuario.celular)
             put(AppDatabaseHelper.COL_USUARIO_DIVISA_ID, usuario.divisaId)
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         }
         return db.update(
             AppDatabaseHelper.TABLE_USUARIOS,
             valores,
             "${AppDatabaseHelper.COL_USUARIO_ID} = ?",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             arrayOf(usuarioId.toString())
         )
     }
@@ -138,6 +156,7 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
         return db.update(
             AppDatabaseHelper.TABLE_USUARIOS,
             valores,
+<<<<<<< HEAD
 =======
             arrayOf(usuario.id.toString())
         )
@@ -147,6 +166,8 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
         return db.delete(
             AppDatabaseHelper.TABLE_USUARIOS,
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             "${AppDatabaseHelper.COL_USUARIO_ID} = ?",
             arrayOf(usuarioId.toString())
         )

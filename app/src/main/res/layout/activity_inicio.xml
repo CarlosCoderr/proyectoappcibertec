@@ -7,6 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     android:background="@color/white"
     android:fitsSystemWindows="true"
     tools:context=".InicioActivity">
@@ -114,6 +117,7 @@
         app:menu="@menu/menu_nav"
         app:itemIconTint="@color/gold"
         app:itemTextColor="@color/black" />
+<<<<<<< HEAD
 </androidx.drawerlayout.widget.DrawerLayout>
 =======
     android:fitsSystemWindows="true"
@@ -220,3 +224,6 @@
         android:fitsSystemWindows="true"/>
 </androidx.drawerlayout.widget.DrawerLayout>
 >>>>>>> origin/main
+=======
+</androidx.drawerlayout.widget.DrawerLayout>
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

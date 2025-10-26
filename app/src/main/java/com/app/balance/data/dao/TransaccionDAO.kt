@@ -11,6 +11,9 @@ import com.app.balance.model.TransaccionConDetalles
 class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDatabaseHelper) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     fun insertarTransaccion(
         categoriaNombre: String,
         categoriaIcono: String,
@@ -34,6 +37,7 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
             put(AppDatabaseHelper.COL_TRANSACCION_FECHA, fecha)
             put(AppDatabaseHelper.COL_TRANSACCION_COMENTARIO, comentario)
             put(AppDatabaseHelper.COL_TRANSACCION_USUARIO_ID, usuarioId)
+<<<<<<< HEAD
 =======
     fun insertarTransaccion(transaccion: Transaccion): Long {
         val valores = ContentValues().apply {
@@ -43,6 +47,8 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
             put(AppDatabaseHelper.COL_TRANSACCION_COMENTARIO, transaccion.comentario)
             put(AppDatabaseHelper.COL_TRANSACCION_USUARIO_ID, transaccion.usuarioId)
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         }
         return db.insert(AppDatabaseHelper.TABLE_TRANSACCIONES, null, valores)
     }
@@ -51,6 +57,9 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
         val transacciones = mutableListOf<TransaccionConDetalles>()
         val query = """
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         SELECT * FROM ${AppDatabaseHelper.TABLE_TRANSACCIONES}
         WHERE ${AppDatabaseHelper.COL_TRANSACCION_USUARIO_ID} = ?
         ORDER BY ${AppDatabaseHelper.COL_TRANSACCION_FECHA} DESC
@@ -62,6 +71,7 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
             val transaccion = Transaccion(
                 id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_ID)),
                 categoriaId = 0,
+<<<<<<< HEAD
 =======
             SELECT t.*, c.*, tc.* 
             FROM ${AppDatabaseHelper.TABLE_TRANSACCIONES} t
@@ -76,12 +86,17 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
                 id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_ID)),
                 categoriaId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_CATEGORIA_ID)),
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 monto = cursor.getDouble(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_MONTO)),
                 fecha = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_FECHA)),
                 comentario = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_COMENTARIO)),
                 usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_USUARIO_ID))
             )
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
             //  Leer el color
             val colorIndex = cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_CATEGORIA_COLOR)
@@ -102,6 +117,7 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
                 nombre = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TRANSACCION_TIPO_CATEGORIA_NOMBRE))
             )
 
+<<<<<<< HEAD
 =======
             val categoria = Categoria(
                 id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_ID)),
@@ -116,12 +132,15 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
                 nombre = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_TIPO_NOMBRE))
             )
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             transacciones.add(TransaccionConDetalles(transaccion, categoria, tipoCategoria))
         }
         cursor.close()
         return transacciones
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     fun obtenerTransaccionesPorFecha(usuarioId: Int, fecha: String): List<TransaccionConDetalles> {
@@ -221,6 +240,8 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
     }
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     fun eliminarTransaccion(transaccionId: Int): Int {
         return db.delete(
             AppDatabaseHelper.TABLE_TRANSACCIONES,
@@ -228,6 +249,7 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
             arrayOf(transaccionId.toString())
         )
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 =======
@@ -286,3 +308,6 @@ class TransaccionDAO(private val db: SQLiteDatabase, private val dbHelper: AppDa
     }
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

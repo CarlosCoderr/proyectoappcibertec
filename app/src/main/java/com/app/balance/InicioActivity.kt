@@ -1,6 +1,9 @@
 package com.app.balance
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -54,6 +57,7 @@ class InicioActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_AGREGAR_GASTO = 1001
+<<<<<<< HEAD
 =======
 import android.content.Intent
 import android.content.SharedPreferences
@@ -115,11 +119,16 @@ class InicioActivity : AppCompatActivity() {
 
         if (changed) editor.apply()
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         enableEdgeToEdge()
         setContentView(R.layout.activity_inicio)
 
@@ -441,6 +450,7 @@ class InicioActivity : AppCompatActivity() {
         } else {
             codigoDivisa = codigoDivisaActual
         }
+<<<<<<< HEAD
 =======
 
 
@@ -691,11 +701,16 @@ class InicioActivity : AppCompatActivity() {
         refreshCenteredBalanceText()
         refreshTransaccionesList()
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     }
 
     override fun onResume() {
         super.onResume()
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         verificarYCargarDivisaDesdeDB()
         recargarBalance()
         loadHeaderData()
@@ -731,6 +746,7 @@ class InicioActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+<<<<<<< HEAD
 }
 =======
         normalizePrefs()
@@ -884,3 +900,6 @@ class InicioActivity : AppCompatActivity() {
     }
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

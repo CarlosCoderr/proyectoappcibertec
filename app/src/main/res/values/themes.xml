@@ -7,10 +7,13 @@
         <item name="colorSecondary">@color/gold</item>
         <item name="colorOnPrimary">@color/black</item>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Balance.Alert.Square</item>
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     </style>
 
 

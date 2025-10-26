@@ -2,6 +2,7 @@
     <string name="app_name">BALANCE+</string>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <string name="navigation_drawer_open">Abrir navegación</string>
     <string name="navigation_drawer_close">Cerrar navegación</string>
 =======
@@ -23,4 +24,8 @@
     <string name="transaccion_guardada_exito">Gasto guardado correctamente</string>
     <string name="transaccion_guardada_error">No se pudo guardar el gasto</string>
 >>>>>>> origin/main
+=======
+    <string name="navigation_drawer_open">Abrir navegación</string>
+    <string name="navigation_drawer_close">Cerrar navegación</string>
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 </resources>

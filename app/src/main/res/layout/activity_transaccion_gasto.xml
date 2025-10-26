@@ -2,10 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
+<<<<<<< HEAD
 =======
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,21 +19,30 @@
     android:background="@color/white"
     tools:context=".TransaccionGastoActivity">
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:padding="24dp">
 =======
         android:padding="20dp">
 >>>>>>> origin/main
+=======
+        android:padding="24dp">
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
@@ -40,6 +53,7 @@
                 android:src="@drawable/ic_arrow_back"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Regresar"/>
+<<<<<<< HEAD
 =======
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -52,11 +66,16 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_arrow_back" />
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 android:layout_weight="1"
                 android:text="Añadir transacciones"
                 android:textSize="24sp"
@@ -117,6 +136,7 @@
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:layout_marginTop="24dp"/>
+<<<<<<< HEAD
 =======
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
@@ -182,6 +202,8 @@
             android:textColor="@color/gris"
             android:textSize="14sp" />
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategorias"
@@ -189,6 +211,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             android:clipToPadding="false"/>
 
         <TextView
@@ -267,6 +292,7 @@
 
     </LinearLayout>
 
+<<<<<<< HEAD
 </ScrollView>
 =======
             android:clipToPadding="false"
@@ -380,3 +406,6 @@
 
 </ScrollView>
 >>>>>>> origin/main
+=======
+</ScrollView>
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

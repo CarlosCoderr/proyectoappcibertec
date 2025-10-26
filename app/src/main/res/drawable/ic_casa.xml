@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="82dp"
@@ -15,6 +18,7 @@
     <path
         android:fillColor="#000000"
         android:pathData="M17,7h2v4h-2z"/>
+<<<<<<< HEAD
 </vector>
 =======
 <vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="50dp" android:viewportHeight="16" android:viewportWidth="16" android:width="50dp">
@@ -23,3 +27,6 @@
     
 </vector>
 >>>>>>> origin/main
+=======
+</vector>
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

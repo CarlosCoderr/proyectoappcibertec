@@ -1,6 +1,9 @@
 package com.app.balance
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,18 +12,24 @@ import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+<<<<<<< HEAD
 =======
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import androidx.core.content.edit
 import com.app.balance.data.AppDatabaseHelper
 import com.app.balance.data.dao.DivisaDAO
@@ -39,6 +48,7 @@ class BalanceActivity : AppCompatActivity() {
     private var codigoDivisa = ""
     private var nombreDivisa = ""
 
+<<<<<<< HEAD
 =======
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.math.BigDecimal
@@ -46,6 +56,8 @@ import java.math.BigDecimal
 class BalanceActivity : AppCompatActivity() {
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -58,6 +70,9 @@ class BalanceActivity : AppCompatActivity() {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         initViews()
         obtenerDivisaSeleccionada()
         setupListeners()
@@ -234,6 +249,7 @@ class BalanceActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+<<<<<<< HEAD
 }
 =======
 
@@ -304,3 +320,6 @@ class BalanceActivity : AppCompatActivity() {
     }
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

@@ -53,6 +53,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnComenzar"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Comenzar"
@@ -62,6 +63,11 @@
         android:text="Comenzar"
         app:cornerRadius="8dp"
 >>>>>>> origin/main
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comenzar"
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         app:backgroundTint="@color/balance"
         android:textColor="@color/negro"
         android:layout_marginHorizontal="40dp"
@@ -69,11 +75,16 @@
         app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
         app:layout_constraintStart_toStartOf="parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/boton"/>
 =======
         app:layout_constraintEnd_toEndOf="parent" />
 >>>>>>> origin/main
+=======
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/boton"/>
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

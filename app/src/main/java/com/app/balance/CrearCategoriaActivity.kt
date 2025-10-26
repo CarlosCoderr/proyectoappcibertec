@@ -1,6 +1,9 @@
 package com.app.balance
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -79,6 +82,7 @@ class CrearCategoriaActivity : AppCompatActivity() {
         private const val REQUEST_CAMERA = 101
         private const val REQUEST_PERMISSIONS = 102
     }
+<<<<<<< HEAD
 =======
 import android.content.Intent
 import android.content.SharedPreferences
@@ -135,12 +139,15 @@ class CrearCategoriaActivity : AppCompatActivity() {
     private var selectedColorInt: Int? = null
     private var defaultIconColor: Int = 0
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_crear_categoria)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         dbHelper = AppDatabaseHelper(this)
@@ -155,12 +162,17 @@ class CrearCategoriaActivity : AppCompatActivity() {
         setupCreateButton()
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         obtenerUsuarioId()
         initViews()
@@ -470,6 +482,7 @@ class CrearCategoriaActivity : AppCompatActivity() {
             else -> "default"
         }
     }
+<<<<<<< HEAD
 =======
     }
 
@@ -755,4 +768,6 @@ class CrearCategoriaActivity : AppCompatActivity() {
         private const val TIPO_INGRESO = 2
     }
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 }

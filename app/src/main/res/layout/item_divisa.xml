@@ -10,9 +10,12 @@
     android:gravity="center_vertical">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <!-- Bandera del país -->
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     <ImageView
         android:id="@+id/ivBanderaDivisa"
         android:layout_width="50dp"
@@ -22,9 +25,12 @@
         android:layout_marginEnd="12dp"/>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <!-- Nombre del país -->
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     <TextView
         android:id="@+id/tvNombreDivisa"
         android:layout_width="0dp"
@@ -35,9 +41,12 @@
         android:textColor="@android:color/black"/>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <!-- Código de divisa -->
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     <TextView
         android:id="@+id/tvCodigoDivisa"
         android:layout_width="wrap_content"

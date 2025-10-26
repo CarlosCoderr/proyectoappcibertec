@@ -11,6 +11,9 @@
         android:orientation="vertical">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         <TextView
             android:id="@+id/tvTituloConf"
             android:layout_width="wrap_content"
@@ -20,8 +23,11 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginBottom="20dp" />
+<<<<<<< HEAD
 =======
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <Switch
             android:id="@+id/swNotificaciones"
@@ -39,6 +45,7 @@
             android:textColor="@color/black"
             android:paddingVertical="8dp" />
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -58,6 +65,10 @@
             android:textColor="@color/black"
             android:layout_marginTop="8dp" />
 >>>>>>> origin/main
+=======
+
+
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     </LinearLayout>
 </ScrollView>

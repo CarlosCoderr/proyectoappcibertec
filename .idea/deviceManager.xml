@@ -5,6 +5,9 @@
       <list>
         <ColumnSorterState>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
           <option name="column" value="API" />
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
@@ -13,8 +16,11 @@
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>
         <ColumnSorterState>
+<<<<<<< HEAD
 =======
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
           <option name="column" value="Name" />
           <option name="order" value="ASCENDING" />
         </ColumnSorterState>

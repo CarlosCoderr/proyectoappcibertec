@@ -8,6 +8,9 @@ import com.app.balance.model.Categoria
 class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppDatabaseHelper) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     fun insertarCategoriaSistema(categoria: Categoria): Long {
         val valores = ContentValues().apply {
             put(AppDatabaseHelper.COL_CAT_SISTEMA_NOMBRE, categoria.nombre)
@@ -26,6 +29,7 @@ class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppData
             AppDatabaseHelper.TABLE_CATEGORIAS_SISTEMA,
             null,
             "${AppDatabaseHelper.COL_CAT_SISTEMA_USUARIO_ID} = ?",
+<<<<<<< HEAD
 =======
     fun insertarCategoria(categoria: Categoria): Long {
         val valores = ContentValues().apply {
@@ -45,6 +49,8 @@ class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppData
             null,
             "${AppDatabaseHelper.COL_CATEGORIA_USUARIO_ID} = ?",
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             arrayOf(usuarioId.toString()),
             null,
             null,
@@ -54,6 +60,9 @@ class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppData
             categorias.add(
                 Categoria(
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                     id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CAT_SISTEMA_ID)),
                     nombre = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CAT_SISTEMA_NOMBRE)),
                     icono = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CAT_SISTEMA_ICONO)),
@@ -61,6 +70,7 @@ class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppData
                     tipoCategoriaId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CAT_SISTEMA_TIPO_ID)),
                     rutaImagen = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CAT_SISTEMA_RUTA_IMAGEN)),
                     color = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CAT_SISTEMA_COLOR))
+<<<<<<< HEAD
 =======
                     id = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_ID)),
                     nombre = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_NOMBRE)),
@@ -69,6 +79,8 @@ class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppData
                     tipoCategoriaId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_TIPO_ID)),
                     rutaImagen = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_CATEGORIA_RUTA_IMAGEN))
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 )
             )
         }
@@ -77,10 +89,14 @@ class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppData
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     fun eliminarCategoriaSistema(categoriaId: Int): Int {
         return db.delete(
             AppDatabaseHelper.TABLE_CATEGORIAS_SISTEMA,
             "${AppDatabaseHelper.COL_CAT_SISTEMA_ID} = ?",
+<<<<<<< HEAD
 =======
     fun obtenerCategoriaPorId(categoriaId: Int): Categoria? {
         val cursor = db.query(
@@ -129,6 +145,8 @@ class CategoriaDAO(private val db: SQLiteDatabase, private val dbHelper: AppData
             AppDatabaseHelper.TABLE_CATEGORIAS,
             "${AppDatabaseHelper.COL_CATEGORIA_ID} = ?",
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             arrayOf(categoriaId.toString())
         )
     }

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -56,6 +59,7 @@
             android:contentDescription="Bandera del país" />
 
     </LinearLayout>
+<<<<<<< HEAD
 =======
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -83,12 +87,17 @@
         android:textSize="16sp"
         android:textColor="@color/black"/>
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     <TextView
         android:id="@+id/tvHeaderEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         android:text="correo@ejemplo.com"
         android:textSize="14sp"
         android:textColor="@android:color/white"
@@ -99,6 +108,7 @@
         android:shadowDy="1"
         android:shadowRadius="2" />
 
+<<<<<<< HEAD
 </LinearLayout>
 =======
         android:text="usuario@gmail.com"
@@ -108,3 +118,6 @@
 </LinearLayout>
 
 >>>>>>> origin/main
+=======
+</LinearLayout>
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

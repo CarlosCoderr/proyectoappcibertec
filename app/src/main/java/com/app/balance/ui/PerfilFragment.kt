@@ -1,6 +1,9 @@
 package com.app.balance.ui
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
@@ -32,6 +35,7 @@ import com.google.android.material.textfield.TextInputEditText
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
+<<<<<<< HEAD
 =======
 import android.content.Intent
 import android.net.Uri
@@ -47,11 +51,16 @@ import com.app.balance.LoginActivity
 import com.app.balance.R
 import com.app.balance.utils.avatarPorGenero
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import java.util.Locale
 
 class PerfilFragment : Fragment(R.layout.fragment_perfil) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     private lateinit var ivFotoPerfil: ImageView
     private lateinit var btnCambiarFoto: ImageButton
     private lateinit var tvNombreCompleto: TextView
@@ -382,6 +391,7 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil) {
             }
         }
     }
+<<<<<<< HEAD
 }
 =======
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -519,3 +529,6 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil) {
     }
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

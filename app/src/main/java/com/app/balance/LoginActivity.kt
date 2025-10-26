@@ -1,9 +1,13 @@
 package com.app.balance
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.content.Context
 =======
 >>>>>>> origin/main
+=======
+import android.content.Context
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -14,13 +18,19 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.app.balance.data.AppDatabaseHelper
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import com.app.balance.data.dao.DivisaDAO
 import com.app.balance.data.dao.TransaccionDAO
 import com.app.balance.data.dao.UsuarioDAO
 import com.app.balance.model.Usuario
+<<<<<<< HEAD
 =======
 import com.app.balance.data.dao.UsuarioDAO
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -28,9 +38,13 @@ import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> origin/main
+=======
+
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     private lateinit var tilCorreo: TextInputLayout
     private lateinit var tietCorreo: TextInputEditText
     private lateinit var tilClave: TextInputLayout
@@ -42,6 +56,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var dbHelper: AppDatabaseHelper
     private lateinit var usuarioDAO: UsuarioDAO
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     private lateinit var divisaDAO: DivisaDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
+<<<<<<< HEAD
 =======
 
     private fun normalizePrefs() {
@@ -111,12 +129,17 @@ class LoginActivity : AppCompatActivity() {
         configurandoListeners()
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         dbHelper = AppDatabaseHelper(this)
         val db = dbHelper.readableDatabase
@@ -125,8 +148,11 @@ class LoginActivity : AppCompatActivity() {
 
         incializarVistas()
         configurandoListeners()
+<<<<<<< HEAD
 =======
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     }
 
     private fun incializarVistas() {
@@ -147,16 +173,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         tietCorreo.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) tilCorreo.error = null
         }
         tietClave.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) tilClave.error = null
         }
+<<<<<<< HEAD
 =======
         tietCorreo.setOnFocusChangeListener { _, hasFocus -> if (hasFocus) tilCorreo.error = null }
         tietClave.setOnFocusChangeListener { _, hasFocus -> if (hasFocus) tilClave.error = null }
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     }
 
     private fun validarCampos() {
@@ -193,6 +225,9 @@ class LoginActivity : AppCompatActivity() {
 
         try {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             val usuario = usuarioDAO.obtenerUsuarioPorEmail(correo)
 
             if (usuario != null) {
@@ -240,6 +275,7 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 } else {
                     // Contraseña incorrecta
+<<<<<<< HEAD
 =======
 
             val usuario = usuarioDAO.obtenerUsuarioPorEmail(correo)
@@ -294,6 +330,8 @@ class LoginActivity : AppCompatActivity() {
 
                 } else {
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                     tilClave.error = "Contraseña incorrecta"
                     Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
                     btnLogin.isEnabled = true
@@ -301,9 +339,13 @@ class LoginActivity : AppCompatActivity() {
                 }
             } else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> origin/main
+=======
+
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 tilCorreo.error = "Usuario no registrado"
                 Toast.makeText(this, "Este correo no está registrado", Toast.LENGTH_SHORT).show()
                 btnLogin.isEnabled = true
@@ -314,6 +356,9 @@ class LoginActivity : AppCompatActivity() {
             btnLogin.isEnabled = true
             btnLogin.text = "Iniciar sesión"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             e.printStackTrace()
         }
     }
@@ -321,12 +366,15 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Hashea una contraseña usando SHA-256
      */
+<<<<<<< HEAD
 =======
         }
     }
 
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     private fun hashearContrasena(contrasena: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contrasena.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
@@ -342,7 +390,11 @@ class LoginActivity : AppCompatActivity() {
         dbHelper.close()
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

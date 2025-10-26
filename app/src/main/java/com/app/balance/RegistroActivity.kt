@@ -69,17 +69,23 @@ class RegistroActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registro)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         dbHelper = AppDatabaseHelper(this)
         val db = dbHelper.writableDatabase
         usuarioDAO = UsuarioDAO(db, dbHelper)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         val paisService = PaisesApiClientRegistro.crearServicio()
         paisRepository = PaisRepositoryRegistro(paisService)
 
@@ -374,6 +380,7 @@ class RegistroActivity : AppCompatActivity() {
         } else true
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private fun getGeneroSeleccionado(): String? {
         return when {
@@ -389,6 +396,8 @@ class RegistroActivity : AppCompatActivity() {
 
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     private fun validateCelular(): Boolean {
         val celular = tietCelular.text.toString().trim()
@@ -484,6 +493,9 @@ class RegistroActivity : AppCompatActivity() {
 
     private fun registrarUsuario() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         val nombre = tietNombre.text?.toString()?.trim().orEmpty()
         val apellido = tietApellido.text?.toString()?.trim().orEmpty()
 
@@ -543,6 +555,7 @@ class RegistroActivity : AppCompatActivity() {
     /**
      * Hashea una contraseña usando SHA-256
      */
+<<<<<<< HEAD
 =======
         btnRegister.isEnabled = false
         btnRegister.text = "Registrando..."
@@ -643,6 +656,8 @@ class RegistroActivity : AppCompatActivity() {
 
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     private fun hashearContrasena(contrasena: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contrasena.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
@@ -653,7 +668,10 @@ class RegistroActivity : AppCompatActivity() {
         dbHelper.close()
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 }

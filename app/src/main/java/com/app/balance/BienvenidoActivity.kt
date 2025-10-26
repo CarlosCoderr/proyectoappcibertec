@@ -1,9 +1,13 @@
 package com.app.balance
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.content.Context
 =======
 >>>>>>> origin/main
+=======
+import android.content.Context
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +18,7 @@ import com.google.android.material.button.MaterialButton
 
 class BienvenidoActivity : AppCompatActivity() {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +66,10 @@ class BienvenidoActivity : AppCompatActivity() {
         prefs.edit().putBoolean("WELCOME_SHOWN", true).apply()
 
 >>>>>>> origin/main
+=======
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         enableEdgeToEdge()
         setContentView(R.layout.activity_bienvenido)
 
@@ -73,21 +82,28 @@ class BienvenidoActivity : AppCompatActivity() {
         val btnComenzar = findViewById<MaterialButton>(R.id.btnComenzar)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         btnComenzar.setOnClickListener {
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
             prefs.edit()
                 .putBoolean("ES_PRIMERA_VEZ", false)
                 .apply()
 
+<<<<<<< HEAD
 =======
 
         btnComenzar.setOnClickListener {
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 =======
@@ -128,3 +144,6 @@ class BienvenidoActivity : AppCompatActivity() {
     }
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

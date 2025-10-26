@@ -3,6 +3,9 @@
     package="com.app.balance">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -14,16 +17,22 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+<<<<<<< HEAD
 =======
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         android:theme="@style/Theme.Balance"
         android:requestLegacyExternalStorage="true">
 
@@ -41,6 +50,7 @@
             android:name=".SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
+<<<<<<< HEAD
 =======
         android:theme="@style/Theme.Balance">
         <activity
@@ -63,12 +73,17 @@
             android:name=".BienvenidoActivity"
             android:exported="true">
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <activity
             android:name=".BienvenidoActivity"
@@ -110,6 +125,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+<<<<<<< HEAD
 =======
         <activity
             android:name=".RegistroActivity"
@@ -118,6 +134,8 @@
             android:name=".LoginActivity"
             android:exported="false" />
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     </application>
 
 </manifest>

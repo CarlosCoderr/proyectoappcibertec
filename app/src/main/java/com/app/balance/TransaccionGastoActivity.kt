@@ -2,6 +2,9 @@ package com.app.balance
 
 import android.app.DatePickerDialog
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.content.Context
 import android.os.Bundle
 import android.widget.EditText
@@ -28,6 +31,7 @@ import com.google.android.material.textfield.TextInputEditText
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+<<<<<<< HEAD
 =======
 import android.content.Intent
 import android.content.SharedPreferences
@@ -56,11 +60,16 @@ import com.google.android.material.button.MaterialButton
 import java.text.SimpleDateFormat
 import java.util.Calendar
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import java.util.Locale
 
 class TransaccionGastoActivity : AppCompatActivity() {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     private lateinit var btnRegresar: ImageButton
     private lateinit var etMontoGasto: EditText
     private lateinit var tvDivisaGasto: TextView
@@ -74,6 +83,7 @@ class TransaccionGastoActivity : AppCompatActivity() {
     private var fechaSeleccionada: String = ""
     private var usuarioId: Int = 0
     private var codigoDivisa: String = "PEN"
+<<<<<<< HEAD
 =======
 
     companion object {
@@ -104,6 +114,8 @@ class TransaccionGastoActivity : AppCompatActivity() {
         }
     }
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,6 +123,9 @@ class TransaccionGastoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_transaccion_gasto)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -350,6 +365,7 @@ class TransaccionGastoActivity : AppCompatActivity() {
 
         usuarioDAO.actualizarMontoTotal(usuarioId, nuevoBalance)
     }
+<<<<<<< HEAD
 }
 =======
         dbHelper = AppDatabaseHelper(this)
@@ -572,3 +588,6 @@ class TransaccionGastoActivity : AppCompatActivity() {
     }
 }
 >>>>>>> origin/main
+=======
+}
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

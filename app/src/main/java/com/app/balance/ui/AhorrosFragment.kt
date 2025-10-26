@@ -1,6 +1,9 @@
 package com.app.balance.ui
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -228,6 +231,7 @@ class AhorrosFragment : Fragment(R.layout.fragment_ahorro), BalanceUpdateListene
         super.onResume()
         obtenerDatosUsuario()
         cargarTransacciones()
+<<<<<<< HEAD
 =======
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -240,5 +244,7 @@ class AhorrosFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_ahorro, container, false)
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     }
 }

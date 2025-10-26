@@ -7,10 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 <<<<<<< HEAD
+<<<<<<< HEAD
     android:gravity="center_horizontal"
 =======
     android:gravity="center"
 >>>>>>> origin/main
+=======
+    android:gravity="center_horizontal"
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     android:padding="24dp"
     android:background="#FFFFFF"
     tools:context=".BalanceActivity"
@@ -21,10 +25,14 @@
         android:id="@+id/ivLogoInicio"
         android:layout_width="200dp"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         android:layout_height="100dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_logo" />
+<<<<<<< HEAD
 =======
         android:layout_height="200dp"
         android:adjustViewBounds="true"
@@ -32,6 +40,8 @@
         android:src="@drawable/ic_logo"
         android:layout_marginTop="60dp" />
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
 
     <TextView
@@ -88,15 +98,21 @@
         android:id="@+id/btnSiguienteBalance"
         style="@style/boton"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="330dp"
         android:text="Siguiente"/>
+<<<<<<< HEAD
 =======
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Siguiente" />
 >>>>>>> origin/main
+=======
+>>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
 </LinearLayout>
