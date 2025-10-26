@@ -1,12 +1,16 @@
 package com.app.balance.ui
 
+<<<<<<< HEAD
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+=======
+>>>>>>> origin/main
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -485,5 +489,13 @@ class GastosFragment : Fragment(R.layout.fragment_gastos), BalanceUpdateListener
         super.onResume()
         obtenerDatosUsuario()
         cargarTransacciones()
+=======
+import androidx.fragment.app.Fragment
+import com.app.balance.R
+
+class GastosFragment : Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_gastos, container, false)
+>>>>>>> origin/main
     }
 }

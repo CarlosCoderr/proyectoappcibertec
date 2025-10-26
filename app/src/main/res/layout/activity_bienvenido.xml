@@ -52,17 +52,28 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnComenzar"
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Comenzar"
+=======
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Comenzar"
+        app:cornerRadius="8dp"
+>>>>>>> origin/main
         app:backgroundTint="@color/balance"
         android:textColor="@color/negro"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/boton"/>
+=======
+        app:layout_constraintEnd_toEndOf="parent" />
+>>>>>>> origin/main
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

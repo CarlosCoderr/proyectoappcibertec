@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+<<<<<<< HEAD
         <TextView
             android:id="@+id/tvTituloConf"
             android:layout_width="wrap_content"
@@ -19,6 +20,8 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginBottom="20dp" />
+=======
+>>>>>>> origin/main
 
         <Switch
             android:id="@+id/swNotificaciones"
@@ -36,8 +39,25 @@
             android:textColor="@color/black"
             android:paddingVertical="8dp" />
 
+<<<<<<< HEAD
 
 
+=======
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="16dp"
+            android:background="@color/gray" />
+
+        <Button
+            android:id="@+id/btnGuardarConfig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar cambios"
+            android:backgroundTint="@color/gold"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp" />
+>>>>>>> origin/main
 
     </LinearLayout>
 </ScrollView>

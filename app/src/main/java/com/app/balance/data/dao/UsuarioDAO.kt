@@ -18,7 +18,10 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
             put(AppDatabaseHelper.COL_USUARIO_CONTRASENA, usuario.contrasena)
             put(AppDatabaseHelper.COL_USUARIO_DIVISA_ID, usuario.divisaId)
             put(AppDatabaseHelper.COL_USUARIO_MONTO_TOTAL, usuario.montoTotal)
+<<<<<<< HEAD
             put(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL, usuario.fotoPerfil)
+=======
+>>>>>>> origin/main
         }
         return db.insert(AppDatabaseHelper.TABLE_USUARIOS, null, valores)
     }
@@ -44,8 +47,12 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
                 email = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_EMAIL)),
                 contrasena = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_CONTRASENA)),
                 divisaId = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_DIVISA_ID)),
+<<<<<<< HEAD
                 montoTotal = cursor.getDouble(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_MONTO_TOTAL)),
                 fotoPerfil = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL))
+=======
+                montoTotal = cursor.getDouble(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COL_USUARIO_MONTO_TOTAL))
+>>>>>>> origin/main
             )
             cursor.close()
             usuario
@@ -98,15 +105,25 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
         )
     }
 
+<<<<<<< HEAD
 
     fun actualizarFotoPerfil(usuarioId: Int, rutaFoto: String?): Int {
         val valores = ContentValues().apply {
             put(AppDatabaseHelper.COL_USUARIO_FOTO_PERFIL, rutaFoto)
+=======
+    fun actualizarUsuario(usuario: Usuario): Int {
+        val valores = ContentValues().apply {
+            put(AppDatabaseHelper.COL_USUARIO_NOMBRE, usuario.nombre)
+            put(AppDatabaseHelper.COL_USUARIO_APELLIDO, usuario.apellido)
+            put(AppDatabaseHelper.COL_USUARIO_CELULAR, usuario.celular)
+            put(AppDatabaseHelper.COL_USUARIO_DIVISA_ID, usuario.divisaId)
+>>>>>>> origin/main
         }
         return db.update(
             AppDatabaseHelper.TABLE_USUARIOS,
             valores,
             "${AppDatabaseHelper.COL_USUARIO_ID} = ?",
+<<<<<<< HEAD
             arrayOf(usuarioId.toString())
         )
     }
@@ -121,6 +138,15 @@ class UsuarioDAO(private val db: SQLiteDatabase, private val dbHelper: AppDataba
         return db.update(
             AppDatabaseHelper.TABLE_USUARIOS,
             valores,
+=======
+            arrayOf(usuario.id.toString())
+        )
+    }
+
+    fun eliminarUsuario(usuarioId: Int): Int {
+        return db.delete(
+            AppDatabaseHelper.TABLE_USUARIOS,
+>>>>>>> origin/main
             "${AppDatabaseHelper.COL_USUARIO_ID} = ?",
             arrayOf(usuarioId.toString())
         )

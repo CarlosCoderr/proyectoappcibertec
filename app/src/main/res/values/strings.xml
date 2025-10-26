@@ -1,6 +1,26 @@
 <resources>
     <string name="app_name">BALANCE+</string>
 
+<<<<<<< HEAD
     <string name="navigation_drawer_open">Abrir navegación</string>
     <string name="navigation_drawer_close">Cerrar navegación</string>
+=======
+    <string name="menu_open">Abrir menú</string>
+    <string name="menu_close">Cerrar menú</string>
+    <string name="categoria_nombre_requerido">Ingrese un nombre para la categoría</string>
+    <string name="categoria_tipo_requerido">Seleccione un tipo de categoría</string>
+    <string name="categoria_icono_requerido">Seleccione un icono para la categoría</string>
+    <string name="categoria_color_requerido">Seleccione un color para la categoría</string>
+    <string name="categoria_usuario_no_encontrado">No se pudo obtener el usuario en sesión</string>
+    <string name="categoria_creada_exito">Categoría creada correctamente</string>
+    <string name="categoria_error_general">No se pudo crear la categoría</string>
+    <string name="categoria_icono_descripcion">Icono de categoría</string>
+    <string name="categoria_color_descripcion">Color de categoría</string>
+    <string name="categoria_agregar">Agregar</string>
+    <string name="categoria_volver">Volver</string>
+    <string name="transaccion_categoria_placeholder">Selecciona una categoría</string>
+    <string name="transaccion_categoria_requerida">Seleccione una categoría para continuar</string>
+    <string name="transaccion_guardada_exito">Gasto guardado correctamente</string>
+    <string name="transaccion_guardada_error">No se pudo guardar el gasto</string>
+>>>>>>> origin/main
 </resources>

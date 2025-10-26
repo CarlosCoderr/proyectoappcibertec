@@ -1,17 +1,24 @@
 package com.app.balance.ui
 
+<<<<<<< HEAD
 import android.content.Context
+=======
+>>>>>>> origin/main
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+=======
+>>>>>>> origin/main
 import androidx.fragment.app.Fragment
 import com.app.balance.R
 
 class ConfiguracionFragment : Fragment() {
+<<<<<<< HEAD
 
     private lateinit var swNotificaciones: Switch
     private lateinit var swTemaOscuro: Switch
@@ -87,5 +94,9 @@ class ConfiguracionFragment : Fragment() {
         }
         // Recrear la actividad para aplicar el tema
         requireActivity().recreate()
+=======
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_configuracion, container, false)
+>>>>>>> origin/main
     }
 }

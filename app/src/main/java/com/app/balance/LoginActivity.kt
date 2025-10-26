@@ -1,6 +1,9 @@
 package com.app.balance
 
+<<<<<<< HEAD
 import android.content.Context
+=======
+>>>>>>> origin/main
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -10,17 +13,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.app.balance.data.AppDatabaseHelper
+<<<<<<< HEAD
 import com.app.balance.data.dao.DivisaDAO
 import com.app.balance.data.dao.TransaccionDAO
 import com.app.balance.data.dao.UsuarioDAO
 import com.app.balance.model.Usuario
+=======
+import com.app.balance.data.dao.UsuarioDAO
+>>>>>>> origin/main
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.security.MessageDigest
 
 class LoginActivity : AppCompatActivity() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     private lateinit var tilCorreo: TextInputLayout
     private lateinit var tietCorreo: TextInputEditText
     private lateinit var tilClave: TextInputLayout
@@ -31,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var dbHelper: AppDatabaseHelper
     private lateinit var usuarioDAO: UsuarioDAO
+<<<<<<< HEAD
     private lateinit var divisaDAO: DivisaDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +49,74 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
+=======
+
+    private fun normalizePrefs() {
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val editor = prefs.edit()
+
+
+        var changed = false
+
+
+        val legacyUserDivisaId = prefs.getInt("USER_DIVISA_ID", -1)
+        if (prefs.getInt("DIVISA_ID", -1) <= 0 && legacyUserDivisaId > 0) {
+            editor.putInt("DIVISA_ID", legacyUserDivisaId); changed = true
+        }
+
+
+        val legacySaldo = prefs.getString("SALDO_INICIAL", null)
+        if (!prefs.contains("BALANCE_INICIAL") && !legacySaldo.isNullOrBlank()) {
+            editor.putString("BALANCE_INICIAL", legacySaldo); changed = true
+        }
+
+
+        if (prefs.getBoolean("welcome_shown", false) && !prefs.getBoolean("WELCOME_SHOWN", false)) {
+            editor.putBoolean("WELCOME_SHOWN", true); changed = true
+        }
+
+        if (changed) editor.apply()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        normalizePrefs()
+
+
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        if (prefs.getBoolean("SESION_ACTIVA", false)) {
+            val hasDivisa = (prefs.getInt("DIVISA_ID", -1) > 0) || !prefs.getString("DIVISA_CODIGO", null).isNullOrBlank()
+
+            val hasMonto  = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
+
+            val next = when {
+                !hasDivisa -> DivisaActivity::class.java
+                !hasMonto  -> BalanceActivity::class.java
+                else       -> InicioActivity::class.java
+            }
+            startActivity(Intent(this, next).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            finish()
+            return
+        }
+
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_login)
+
+        // Inicializar base de datos
+        dbHelper = AppDatabaseHelper(this)
+        val db = dbHelper.readableDatabase
+        usuarioDAO = UsuarioDAO(db, dbHelper)
+
+        incializarVistas()
+        configurandoListeners()
+
+>>>>>>> origin/main
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+<<<<<<< HEAD
 
         dbHelper = AppDatabaseHelper(this)
         val db = dbHelper.readableDatabase
@@ -51,6 +125,8 @@ class LoginActivity : AppCompatActivity() {
 
         incializarVistas()
         configurandoListeners()
+=======
+>>>>>>> origin/main
     }
 
     private fun incializarVistas() {
@@ -70,12 +146,17 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Función en desarrollo", Toast.LENGTH_SHORT).show()
         }
 
+<<<<<<< HEAD
         tietCorreo.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) tilCorreo.error = null
         }
         tietClave.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) tilClave.error = null
         }
+=======
+        tietCorreo.setOnFocusChangeListener { _, hasFocus -> if (hasFocus) tilCorreo.error = null }
+        tietClave.setOnFocusChangeListener { _, hasFocus -> if (hasFocus) tilClave.error = null }
+>>>>>>> origin/main
     }
 
     private fun validarCampos() {
@@ -111,6 +192,7 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.text = "Verificando..."
 
         try {
+<<<<<<< HEAD
             val usuario = usuarioDAO.obtenerUsuarioPorEmail(correo)
 
             if (usuario != null) {
@@ -158,13 +240,70 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 } else {
                     // Contraseña incorrecta
+=======
+
+            val usuario = usuarioDAO.obtenerUsuarioPorEmail(correo)
+
+            if (usuario != null) {
+
+                val claveHasheada = hashearContrasena(clave)
+
+                if (usuario.contrasena == claveHasheada) {
+
+                    val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+                    val editor = prefs.edit()
+
+                        .putInt("USER_ID", usuario.id)
+                        .putString("USER_NOMBRE", "${usuario.nombre} ${usuario.apellido}")
+                        .putString("USER_CORREO", usuario.email)
+                        .putBoolean("SESION_ACTIVA", true)
+
+                        //  lee PerfilFragment
+                        .putString("USER_NAME", usuario.nombre)
+                        .putString("USER_LAST", usuario.apellido)
+                        .putString("USER_MAIL", usuario.email)
+                        .putString("USER_PHONE", usuario.celular)
+                        .putString("USER_BIRTH", usuario.fechaNacimiento)
+                        .putString("USER_GENDER", usuario.genero)
+                        .putInt("USER_AVATAR", com.app.balance.utils.avatarPorGenero(usuario.genero))
+
+
+
+                    if (usuario.divisaId > 0) {
+                        editor.putInt("DIVISA_ID", usuario.divisaId)
+                    }
+                    editor.apply()
+
+                    Toast.makeText(this, "¡Bienvenido ${usuario.nombre}!", Toast.LENGTH_SHORT).show()
+
+
+                    val hasDivisa = prefs.getInt("DIVISA_ID", -1) > 0
+                    val hasMonto  = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
+
+                    val next = when {
+                        !hasDivisa -> DivisaActivity::class.java
+                        !hasMonto  -> BalanceActivity::class.java
+                        else       -> InicioActivity::class.java
+                    }
+
+                    startActivity(
+                        Intent(this, next)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    )
+                    finish()
+
+                } else {
+>>>>>>> origin/main
                     tilClave.error = "Contraseña incorrecta"
                     Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
                     btnLogin.isEnabled = true
                     btnLogin.text = "Iniciar sesión"
                 }
             } else {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
                 tilCorreo.error = "Usuario no registrado"
                 Toast.makeText(this, "Este correo no está registrado", Toast.LENGTH_SHORT).show()
                 btnLogin.isEnabled = true
@@ -174,6 +313,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Error al iniciar sesión: ${e.message}", Toast.LENGTH_SHORT).show()
             btnLogin.isEnabled = true
             btnLogin.text = "Iniciar sesión"
+<<<<<<< HEAD
             e.printStackTrace()
         }
     }
@@ -181,6 +321,12 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Hashea una contraseña usando SHA-256
      */
+=======
+        }
+    }
+
+
+>>>>>>> origin/main
     private fun hashearContrasena(contrasena: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contrasena.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
@@ -195,4 +341,8 @@ class LoginActivity : AppCompatActivity() {
         super.onDestroy()
         dbHelper.close()
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main

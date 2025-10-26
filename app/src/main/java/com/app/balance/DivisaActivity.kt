@@ -16,9 +16,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.balance.adapters.DivisaAdapter
+<<<<<<< HEAD
 import com.app.balance.data.AppDatabaseHelper
 import com.app.balance.data.dao.DivisaDAO
 import com.app.balance.data.dao.UsuarioDAO
+=======
+>>>>>>> origin/main
 import com.app.balance.model.CountryCode
 import com.app.balance.model.Divisa
 import com.app.balance.network.apiClient.PaisesApiClientDivisa
@@ -40,8 +43,62 @@ class DivisaActivity : AppCompatActivity() {
 
     private var todasLasDivisas = mutableListOf<Divisa>()
 
+<<<<<<< HEAD
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+=======
+    private fun normalizePrefs() {
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val editor = prefs.edit()
+        var changed = false
+
+        val legacyUserDivisaId = prefs.getInt("USER_DIVISA_ID", -1)
+        if (prefs.getInt("DIVISA_ID", -1) <= 0 && legacyUserDivisaId > 0) {
+            editor.putInt("DIVISA_ID", legacyUserDivisaId); changed = true
+        }
+
+        val legacySaldo = prefs.getString("SALDO_INICIAL", null)
+        if (!prefs.contains("BALANCE_INICIAL") && !legacySaldo.isNullOrBlank()) {
+            editor.putString("BALANCE_INICIAL", legacySaldo); changed = true
+        }
+
+        if (prefs.getBoolean("welcome_shown", false) && !prefs.getBoolean("WELCOME_SHOWN", false)) {
+            editor.putBoolean("WELCOME_SHOWN", true); changed = true
+        }
+
+        if (changed) editor.apply()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        normalizePrefs()
+
+        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+
+        val userId = prefs.getInt("USER_ID", -1)
+        val userCorreo = prefs.getString("USER_CORREO", null)
+        val sesionActiva = prefs.getBoolean("SESION_ACTIVA", false)
+
+
+        if (!sesionActiva || userId == -1 || userCorreo.isNullOrBlank()) {
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            )
+            finish()
+            return
+        }
+
+
+        val divisaId = prefs.getInt("DIVISA_ID", -1)
+        val divisaCodigo = prefs.getString("DIVISA_CODIGO", null)
+        val hasDivisa = (divisaId > 0) || !divisaCodigo.isNullOrBlank()
+        val hasMonto  = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
+        if (hasDivisa && !hasMonto) { /* ir a Balance */ }
+        if (hasDivisa && hasMonto)  { /* ir a Inicio   */ }
+
+
+>>>>>>> origin/main
         enableEdgeToEdge()
         setContentView(R.layout.activity_divisa)
 
@@ -56,7 +113,10 @@ class DivisaActivity : AppCompatActivity() {
         setupRepository()
         setupSearchListener()
         setupBoton()
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
         cargarDivisas()
     }
 
@@ -106,6 +166,7 @@ class DivisaActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+<<<<<<< HEAD
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
             prefs.edit()
                 .putString("TEMP_DIVISA_CODIGO", divisaSeleccionada.codigo)
@@ -120,6 +181,20 @@ class DivisaActivity : AppCompatActivity() {
             ).show()
 
             navigateToBalance()
+=======
+
+            val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
+            prefs.edit()
+                .putInt("DIVISA_ID", divisaSeleccionada.id)           // puede ser 0; no pasa nada con la regla nueva
+                .putString("DIVISA_CODIGO", divisaSeleccionada.codigo) // ← CLAVE para fallback
+                .putString("DIVISA_NOMBRE", divisaSeleccionada.nombre)
+                .putString("DIVISA_BANDERA", divisaSeleccionada.bandera)
+                .remove("BALANCE_INICIAL")
+                .apply()
+
+            startActivity(Intent(this, BalanceActivity::class.java))
+            finish()
+>>>>>>> origin/main
         }
     }
 
@@ -156,4 +231,8 @@ class DivisaActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main

@@ -1,5 +1,6 @@
 package com.app.balance.ui
 
+<<<<<<< HEAD
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -227,5 +228,17 @@ class AhorrosFragment : Fragment(R.layout.fragment_ahorro), BalanceUpdateListene
         super.onResume()
         obtenerDatosUsuario()
         cargarTransacciones()
+=======
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.app.balance.R
+
+class AhorrosFragment : Fragment(){
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_ahorro, container, false)
+>>>>>>> origin/main
     }
 }

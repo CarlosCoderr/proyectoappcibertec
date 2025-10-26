@@ -10,6 +10,11 @@ data class Usuario(
     val email: String,
     val contrasena: String,
     val divisaId: Int,
+<<<<<<< HEAD
     val montoTotal: Double = 0.0,
     val fotoPerfil: String? = null
 )
+=======
+    val montoTotal: Double = 0.0
+)
+>>>>>>> origin/main

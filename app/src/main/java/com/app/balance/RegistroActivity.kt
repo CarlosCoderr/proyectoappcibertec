@@ -68,10 +68,18 @@ class RegistroActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_registro)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
         dbHelper = AppDatabaseHelper(this)
         val db = dbHelper.writableDatabase
         usuarioDAO = UsuarioDAO(db, dbHelper)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
         val paisService = PaisesApiClientRegistro.crearServicio()
         paisRepository = PaisRepositoryRegistro(paisService)
 
@@ -365,6 +373,22 @@ class RegistroActivity : AppCompatActivity() {
             false
         } else true
     }
+<<<<<<< HEAD
+=======
+    private fun getGeneroSeleccionado(): String? {
+        return when {
+            chkHombre.isChecked -> "Hombre"
+            chkMujer.isChecked  -> "Mujer"
+            chkOtro.isChecked   -> "Otro"
+            else -> null
+
+        }
+
+    }
+
+
+
+>>>>>>> origin/main
 
     private fun validateCelular(): Boolean {
         val celular = tietCelular.text.toString().trim()
@@ -459,6 +483,7 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     private fun registrarUsuario() {
+<<<<<<< HEAD
         val nombre = tietNombre.text?.toString()?.trim().orEmpty()
         val apellido = tietApellido.text?.toString()?.trim().orEmpty()
 
@@ -518,6 +543,106 @@ class RegistroActivity : AppCompatActivity() {
     /**
      * Hashea una contraseña usando SHA-256
      */
+=======
+        btnRegister.isEnabled = false
+        btnRegister.text = "Registrando..."
+
+        CoroutineScope(Dispatchers.Default).launch {
+            try {
+                val correo = tietCorreo.text.toString().trim()
+                val usuarioExistente = usuarioDAO.obtenerUsuarioPorEmail(correo)
+
+                if (usuarioExistente != null) {
+                    withContext(Dispatchers.Main) {
+                        tilCorreo.error = "Este correo ya está registrado"
+                        btnRegister.isEnabled = true
+                        btnRegister.text = "CREAR CUENTA"
+                        Toast.makeText(
+                            this@RegistroActivity,
+                            "Este correo ya está registrado",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    val nombre = tietNombre.text.toString().trim()
+                    val apellido = tietApellido.text.toString().trim()
+                    val anio = tietAnio.text.toString().trim()
+                    val mes = tietMes.text.toString().trim().padStart(2, '0')
+                    val dia = tietDia.text.toString().trim().padStart(2, '0')
+                    val fechaNacimiento = "$dia/$mes/$anio"
+
+
+                    val genero = when {
+                        chkHombre.isChecked -> "Masculino"
+                        chkMujer.isChecked  -> "Femenino"
+                        else                -> "Otro"
+                    }
+
+                    val celular = "$selectedCountryCode${tietCelular.text.toString().trim()}"
+                    val clave = tietClave.text.toString()
+                    val claveHasheada = hashearContrasena(clave)
+
+
+                    val indexPaisSeleccionado = paises.indexOfFirst { it.codigo == selectedCountryCode }
+                    val divisaId = if (indexPaisSeleccionado != -1) paises[indexPaisSeleccionado].id else 1
+
+                    val nuevoUsuario = Usuario(
+                        nombre = nombre,
+                        apellido = apellido,
+                        fechaNacimiento = fechaNacimiento,
+                        genero = genero,
+                        celular = celular,
+                        email = correo,
+                        contrasena = claveHasheada,
+                        divisaId = divisaId,
+                        montoTotal = 0.0
+                    )
+
+                    //  SOLO UNA VEZ
+                    val idInsertado = usuarioDAO.insertarUsuario(nuevoUsuario)
+
+                    withContext(Dispatchers.Main) {
+                        if (idInsertado > 0) {
+                            //  Guardar género y avatar SOLO si el registro fue exitoso
+                            getSharedPreferences("AppPreferences", MODE_PRIVATE).edit()
+                                .putString("USER_GENDER", genero) // "Masculino"/"Femenino"/"Otro"
+                                .putInt("USER_AVATAR", com.app.balance.utils.avatarPorGenero(genero))
+                                .apply()
+
+                            Toast.makeText(
+                                this@RegistroActivity,
+                                "¡Registro exitoso! Por favor inicia sesión",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            startActivity(Intent(this@RegistroActivity, LoginActivity::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@RegistroActivity,
+                                "Error al registrar usuario",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            btnRegister.isEnabled = true
+                            btnRegister.text = "CREAR CUENTA"
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@RegistroActivity,
+                        "Error: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    btnRegister.isEnabled = true
+                    btnRegister.text = "CREAR CUENTA"
+                }
+            }
+        }
+    }
+
+
+>>>>>>> origin/main
     private fun hashearContrasena(contrasena: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contrasena.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
@@ -527,4 +652,8 @@ class RegistroActivity : AppCompatActivity() {
         super.onDestroy()
         dbHelper.close()
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 }
