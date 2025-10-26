@@ -3,26 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-<<<<<<< HEAD
     android:background="#F5F5F5"
     android:fillViewport="true">
-=======
-    android:background="@color/white">
->>>>>>> origin/main
-=======
-    android:background="#F5F5F5"
-    android:fillViewport="true">
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         android:gravity="center_horizontal">
 
         <FrameLayout
@@ -76,20 +63,10 @@
 
         </FrameLayout>
 
-<<<<<<< HEAD
-=======
-        android:padding="24dp">
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -150,94 +127,10 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-<<<<<<< HEAD
-=======
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-
-            <FrameLayout
-                android:id="@+id/avatarBg"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:background="@drawable/et_background_gold"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_gravity="center_horizontal">
-
-                <ImageView
-                    android:id="@+id/imgAvatar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_perfil"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tvIniciales"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="A"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
-
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp">
-
-                <TextView
-                    android:id="@+id/tvNombreCompleto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre Apellido"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvCorreo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="usuario@email.com"
-                    android:textColor="@color/gris"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEditar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Editar"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@color/gold"
-                android:textColor="@color/black"/>
-        </LinearLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="16dp"
-            app:cardUseCompatPadding="true">
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 android:orientation="vertical">
 
 
@@ -457,56 +350,4 @@
 
     </LinearLayout>
 
-<<<<<<< HEAD
 </ScrollView>
-=======
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Datos"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/tvCelular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Celular: —"
-                    android:textColor="@color/negro" />
-
-                <TextView
-                    android:id="@+id/tvFechaNac"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha de Nacimiento: —"
-                    android:textColor="@color/negro" />
-
-                <TextView
-                    android:id="@+id/tvGenero"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Género: —"
-                    android:textColor="@color/negro" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <Button
-            android:id="@+id/btnCerrarSesion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Cerrar sesión"
-            android:backgroundTint="@color/gold"
-            android:textColor="@color/black" />
-    </LinearLayout>
-</ScrollView>
-
->>>>>>> origin/main
-=======
-</ScrollView>
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

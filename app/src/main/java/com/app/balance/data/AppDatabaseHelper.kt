@@ -8,10 +8,6 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
 
     companion object {
         private const val DATABASE_NAME = "balance_db"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         private const val DATABASE_VERSION = 7
 
         // Tablas
@@ -21,19 +17,6 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
         const val TABLE_TIPOS_CATEGORIA = "tipos_categoria"
         const val TABLE_COUNTRY_CODES = "country_codes"
         const val TABLE_DIVISAS = "divisas"
-<<<<<<< HEAD
-=======
-        private const val DATABASE_VERSION = 1
-
-        // Tablas
-        const val TABLE_USUARIOS = "usuarios"
-        const val TABLE_CATEGORIAS = "categorias"
-        const val TABLE_TRANSACCIONES = "transacciones"
-        const val TABLE_TIPOS_CATEGORIA = "tipos_categoria"
-        const val TABLE_COUNTRY_CODES = "country_codes"
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         // Columnas Usuario
         const val COL_USUARIO_ID = "id"
@@ -47,10 +30,6 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
         const val COL_USUARIO_DIVISA_ID = "divisa_id"
         const val COL_USUARIO_MONTO_TOTAL = "monto_total"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         const val COL_USUARIO_FOTO_PERFIL = "foto_perfil"
 
         // Columnas Categoría Sistema
@@ -70,56 +49,22 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
         const val COL_TRANSACCION_CATEGORIA_RUTA_IMAGEN = "categoria_ruta_imagen"
         const val COL_TRANSACCION_TIPO_CATEGORIA_ID = "tipo_categoria_id"
         const val COL_TRANSACCION_TIPO_CATEGORIA_NOMBRE = "tipo_categoria_nombre"
-<<<<<<< HEAD
-=======
-        // Columnas Categoría
-        const val COL_CATEGORIA_ID = "id"
-        const val COL_CATEGORIA_NOMBRE = "nombre"
-        const val COL_CATEGORIA_ICONO = "icono"
-        const val COL_CATEGORIA_USUARIO_ID = "usuario_id"
-        const val COL_CATEGORIA_TIPO_ID = "tipo_categoria_id"
-        const val COL_CATEGORIA_RUTA_IMAGEN = "ruta_imagen"
-
-        // Columnas Transacción
-        const val COL_TRANSACCION_ID = "id"
-        const val COL_TRANSACCION_CATEGORIA_ID = "categoria_id"
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         const val COL_TRANSACCION_MONTO = "monto"
         const val COL_TRANSACCION_FECHA = "fecha"
         const val COL_TRANSACCION_COMENTARIO = "comentario"
         const val COL_TRANSACCION_USUARIO_ID = "usuario_id"
-<<<<<<< HEAD
-<<<<<<< HEAD
         const val COL_TRANSACCION_CATEGORIA_COLOR = "categoria_color"
-=======
->>>>>>> origin/main
-=======
-        const val COL_TRANSACCION_CATEGORIA_COLOR = "categoria_color"
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         // Columnas Tipo Categoría
         const val COL_TIPO_ID = "id"
         const val COL_TIPO_NOMBRE = "nombre"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/main
-=======
-
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         // Columnas Country Code
         const val COL_COUNTRY_ID = "id"
         const val COL_COUNTRY_NOMBRE = "nombre"
         const val COL_COUNTRY_CODIGO = "codigo"
         const val COL_COUNTRY_BANDERA_URL = "bandera_url"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         // Columnas Divisas
         const val COL_DIVISA_ID = "id"
@@ -130,15 +75,6 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
 
     override fun onCreate(db: SQLiteDatabase) {
         // Tabla de tipos de categoría
-<<<<<<< HEAD
-=======
-    }
-
-    override fun onCreate(db: SQLiteDatabase) {
-        //  tabla de tipos de categoría
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         val createTipoCategoriaTable = """
             CREATE TABLE $TABLE_TIPOS_CATEGORIA (
                 $COL_TIPO_ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -147,51 +83,22 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
         """.trimIndent()
         db.execSQL(createTipoCategoriaTable)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         // Insertar tipos de categoría
-=======
-        // Insertar tipos de categoría predefinidos
->>>>>>> origin/main
-=======
-        // Insertar tipos de categoría
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         db.execSQL("INSERT INTO $TABLE_TIPOS_CATEGORIA ($COL_TIPO_NOMBRE) VALUES ('Necesidad')")
         db.execSQL("INSERT INTO $TABLE_TIPOS_CATEGORIA ($COL_TIPO_NOMBRE) VALUES ('Deseo')")
         db.execSQL("INSERT INTO $TABLE_TIPOS_CATEGORIA ($COL_TIPO_NOMBRE) VALUES ('Ahorro')")
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         // Tabla de country codes
-=======
-        // tabla de country codes
->>>>>>> origin/main
-=======
-        // Tabla de country codes
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         val createCountryCodeTable = """
             CREATE TABLE $TABLE_COUNTRY_CODES (
                 $COL_COUNTRY_ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 $COL_COUNTRY_NOMBRE TEXT NOT NULL,
-<<<<<<< HEAD
-<<<<<<< HEAD
                 $COL_COUNTRY_CODIGO TEXT NOT NULL UNIQUE,
                 $COL_COUNTRY_BANDERA_URL TEXT
-=======
-                $COL_COUNTRY_CODIGO TEXT NOT NULL UNIQUE
->>>>>>> origin/main
-=======
-                $COL_COUNTRY_CODIGO TEXT NOT NULL UNIQUE,
-                $COL_COUNTRY_BANDERA_URL TEXT
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             )
         """.trimIndent()
         db.execSQL(createCountryCodeTable)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         // NUEVA TABLA: Divisas
         val createDivisasTable = """
             CREATE TABLE $TABLE_DIVISAS (
@@ -204,12 +111,6 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
         db.execSQL(createDivisasTable)
 
         // Tabla de usuarios
-<<<<<<< HEAD
-=======
-        //  tabla de usuarios
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         val createUsuarioTable = """
             CREATE TABLE $TABLE_USUARIOS (
                 $COL_USUARIO_ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -222,25 +123,12 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
                 $COL_USUARIO_CONTRASENA TEXT NOT NULL,
                 $COL_USUARIO_DIVISA_ID INTEGER NOT NULL,
                 $COL_USUARIO_MONTO_TOTAL REAL DEFAULT 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
                 $COL_USUARIO_FOTO_PERFIL TEXT,
                 FOREIGN KEY ($COL_USUARIO_DIVISA_ID) REFERENCES $TABLE_DIVISAS ($COL_DIVISA_ID)
-=======
-                FOREIGN KEY ($COL_USUARIO_DIVISA_ID) REFERENCES $TABLE_COUNTRY_CODES ($COL_COUNTRY_ID)
->>>>>>> origin/main
-=======
-                $COL_USUARIO_FOTO_PERFIL TEXT,
-                FOREIGN KEY ($COL_USUARIO_DIVISA_ID) REFERENCES $TABLE_DIVISAS ($COL_DIVISA_ID)
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             )
         """.trimIndent()
         db.execSQL(createUsuarioTable)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         // Tabla de Categorías del Sistema
         val createCategoriaSistemaTable = """
             CREATE TABLE $TABLE_CATEGORIAS_SISTEMA (
@@ -267,42 +155,10 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
                 $COL_TRANSACCION_TIPO_CATEGORIA_ID INTEGER NOT NULL,
                 $COL_TRANSACCION_CATEGORIA_COLOR INTEGER,
                 $COL_TRANSACCION_TIPO_CATEGORIA_NOMBRE TEXT NOT NULL,
-<<<<<<< HEAD
-=======
-        //  tabla de categorías
-        val createCategoriaTable = """
-            CREATE TABLE $TABLE_CATEGORIAS (
-                $COL_CATEGORIA_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                $COL_CATEGORIA_NOMBRE TEXT NOT NULL,
-                $COL_CATEGORIA_ICONO TEXT DEFAULT 'default',
-                $COL_CATEGORIA_USUARIO_ID INTEGER NOT NULL,
-                $COL_CATEGORIA_TIPO_ID INTEGER NOT NULL,
-                $COL_CATEGORIA_RUTA_IMAGEN TEXT,
-                FOREIGN KEY ($COL_CATEGORIA_USUARIO_ID) REFERENCES $TABLE_USUARIOS ($COL_USUARIO_ID),
-                FOREIGN KEY ($COL_CATEGORIA_TIPO_ID) REFERENCES $TABLE_TIPOS_CATEGORIA ($COL_TIPO_ID)
-            )
-        """.trimIndent()
-        db.execSQL(createCategoriaTable)
-
-        //tabla de transacciones
-        val createTransaccionTable = """
-            CREATE TABLE $TABLE_TRANSACCIONES (
-                $COL_TRANSACCION_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                $COL_TRANSACCION_CATEGORIA_ID INTEGER NOT NULL,
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 $COL_TRANSACCION_MONTO REAL NOT NULL,
                 $COL_TRANSACCION_FECHA TEXT NOT NULL,
                 $COL_TRANSACCION_COMENTARIO TEXT,
                 $COL_TRANSACCION_USUARIO_ID INTEGER NOT NULL,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                FOREIGN KEY ($COL_TRANSACCION_CATEGORIA_ID) REFERENCES $TABLE_CATEGORIAS ($COL_CATEGORIA_ID),
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 FOREIGN KEY ($COL_TRANSACCION_USUARIO_ID) REFERENCES $TABLE_USUARIOS ($COL_USUARIO_ID)
             )
         """.trimIndent()
@@ -310,24 +166,11 @@ class AppDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_N
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         // Eliminar tablas si existen
         db.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSACCIONES")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_CATEGORIAS_SISTEMA")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USUARIOS")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DIVISAS")
-<<<<<<< HEAD
-=======
-        // Eliminar tablas si existen (para desarrollo)
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSACCIONES")
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_CATEGORIAS")
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_USUARIOS")
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         db.execSQL("DROP TABLE IF EXISTS $TABLE_TIPOS_CATEGORIA")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_COUNTRY_CODES")
         onCreate(db)

@@ -18,3 +18,4 @@
         android:name="com.app.balance.ui.ConfiguracionFragment"
         android:label="ConfiguracionFragment" />
 </navigation>
+

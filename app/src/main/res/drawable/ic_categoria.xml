@@ -1,13 +1,5 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="70dp" android:viewportHeight="20" android:viewportWidth="20" android:width="70dp">
-      
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <path android:fillColor="@android:color/black" android:pathData="M5,7h13v10H2V4h7l2,2H4v9h1V7z"/>
-=======
-    <path android:fillColor="#FF000000" android:pathData="M5,7h13v10H2V4h7l2,2H4v9h1V7z"/>
->>>>>>> origin/main
-=======
-    <path android:fillColor="@android:color/black" android:pathData="M5,7h13v10H2V4h7l2,2H4v9h1V7z"/>
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
-    
+
 </vector>

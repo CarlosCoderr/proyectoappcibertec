@@ -1,13 +1,6 @@
 package com.app.balance
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.content.Context
-=======
->>>>>>> origin/main
-=======
-import android.content.Context
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -18,58 +11,8 @@ import com.google.android.material.button.MaterialButton
 
 class BienvenidoActivity : AppCompatActivity() {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-=======
-    private fun normalizePrefs() {
-        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
-        val editor = prefs.edit()
-        var changed = false
-
-
-        val legacyUserDivisaId = prefs.getInt("USER_DIVISA_ID", -1)
-        if (prefs.getInt("DIVISA_ID", -1) <= 0 && legacyUserDivisaId > 0) {
-            editor.putInt("DIVISA_ID", legacyUserDivisaId); changed = true
-        }
-
-
-        val legacySaldo = prefs.getString("SALDO_INICIAL", null)
-        if (!prefs.contains("BALANCE_INICIAL") && !legacySaldo.isNullOrBlank()) {
-            editor.putString("BALANCE_INICIAL", legacySaldo); changed = true
-        }
-
-
-        if (prefs.getBoolean("welcome_shown", false) && !prefs.getBoolean("WELCOME_SHOWN", false)) {
-            editor.putBoolean("WELCOME_SHOWN", true); changed = true
-        }
-
-        if (changed) editor.apply()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        normalizePrefs()
-
-        val prefs = getSharedPreferences("AppPreferences", MODE_PRIVATE)
-        val alreadyShown = prefs.getBoolean("WELCOME_SHOWN", false)
-
-
-        if (alreadyShown) {
-            routeAccordingToSession(prefs)
-            finish()
-            return
-        }
-
-
-        prefs.edit().putBoolean("WELCOME_SHOWN", true).apply()
-
->>>>>>> origin/main
-=======
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         enableEdgeToEdge()
         setContentView(R.layout.activity_bienvenido)
 
@@ -81,69 +24,15 @@ class BienvenidoActivity : AppCompatActivity() {
 
         val btnComenzar = findViewById<MaterialButton>(R.id.btnComenzar)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         btnComenzar.setOnClickListener {
             val prefs = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
             prefs.edit()
                 .putBoolean("ES_PRIMERA_VEZ", false)
                 .apply()
 
-<<<<<<< HEAD
-=======
-
-        btnComenzar.setOnClickListener {
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-
-
-    private fun routeAccordingToSession(prefs: android.content.SharedPreferences) {
-        val isLoggedIn = prefs.getBoolean("SESION_ACTIVA", false)
-
-        if (!isLoggedIn) {
-
-            startActivity(Intent(this, LoginActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            })
-            return
-        }
-
-
-        val divisaId = prefs.getInt("DIVISA_ID", -1)
-        val divisaCodigo = prefs.getString("DIVISA_CODIGO", null)
-        val hasDivisa = (divisaId > 0) || !divisaCodigo.isNullOrBlank()
-        val hasMonto = !prefs.getString("BALANCE_INICIAL", null).isNullOrBlank()
-
-        val next = when {
-            !hasDivisa -> DivisaActivity::class.java
-            !hasMonto  -> BalanceActivity::class.java
-            else       -> InicioActivity::class.java
-        }
-
-
-        android.util.Log.d(
-            "ROUTER_CHECK",
-            "SESION_ACTIVA=$isLoggedIn, DIVISA_ID=$divisaId, BALANCE_INICIAL=${prefs.getString("BALANCE_INICIAL", null)}"
-        )
-
-        startActivity(Intent(this, next).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        })
-    }
-}
->>>>>>> origin/main
-=======
-}
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

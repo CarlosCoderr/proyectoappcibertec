@@ -1,23 +1,11 @@
 package com.app.balance.ui
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.content.Context
 import android.content.Intent
-=======
->>>>>>> origin/main
-=======
-import android.content.Context
-import android.content.Intent
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -225,16 +213,5 @@ class IngresosFragment : Fragment(R.layout.fragment_ingresos), BalanceUpdateList
         super.onResume()
         obtenerDatos()
         actualizarGrafico()
-<<<<<<< HEAD
-=======
-import androidx.fragment.app.Fragment
-import com.app.balance.R
-
-class IngresosFragment : Fragment(){
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_ingresos, container, false)
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     }
 }

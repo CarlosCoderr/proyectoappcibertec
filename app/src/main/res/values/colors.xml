@@ -7,15 +7,6 @@
     <color name="green">#2E7D32</color>
     <color name="red">#D32F2F</color>
     <color name="blue">#1565C0</color>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    <color name="amarillo">#FFC107</color> <!-- ejemplo -->
-    <color name="rojo">#D32F2F</color>     <!-- ejemplo -->
-
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     <color name="gray">#424242</color>
 
     <color name="light_green">#66BB6A</color>
@@ -37,21 +28,6 @@
     <color name="borde">#D9D9D9</color>
     <color name="ic_launcher_bg">@color/gold</color>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     <color name="ic_launcher_background">#FFC107</color>
-=======
-    <color name="category_red">#FF5252</color>
-    <color name="category_orange">#FF9800</color>
-    <color name="category_yellow">#FFEB3B</color>
-    <color name="category_green">#66BB6A</color>
-    <color name="category_blue">#42A5F5</color>
-    <color name="category_indigo">#5C6BC0</color>
-    <color name="category_purple">#AB47BC</color>
-    <color name="category_gray">#9E9E9E</color>
->>>>>>> origin/main
-=======
-    <color name="ic_launcher_background">#FFC107</color>
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
 </resources>

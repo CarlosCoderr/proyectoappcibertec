@@ -1,54 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blanco"
     android:fillViewport="true">
-<<<<<<< HEAD
-=======
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/white"
-    tools:context=".CrearCategoriaActivity">
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:paddingTop="16dp"
         android:paddingBottom="24dp">
-<<<<<<< HEAD
-=======
-        android:padding="20dp">
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginBottom="24dp">
@@ -61,29 +31,10 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Regresar"
                 android:padding="8dp"/>
-<<<<<<< HEAD
-=======
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp"
-                android:src="@drawable/ic_arrow_back" />
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 android:layout_weight="1"
                 android:text="Crear Categoría"
                 android:textSize="22sp"
@@ -298,154 +249,4 @@
 
     </LinearLayout>
 
-<<<<<<< HEAD
 </ScrollView>
-=======
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Crear categoria"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="normal"
-                android:fontFamily="sans-serif-medium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvPreviewIcon"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginEnd="16dp"
-                app:cardCornerRadius="36dp"
-                app:cardElevation="0dp"
-                app:cardUseCompatPadding="false"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/black"
-                app:cardBackgroundColor="@color/white">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivPreviewIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/categoria_icono_descripcion"
-                    android:src="@drawable/ic_categoria"
-                    android:tint="@color/gris" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNombreCategoria"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Nombre de categoría"
-                app:boxCornerRadiusTopStart="0dp"
-                app:boxCornerRadiusTopEnd="0dp"
-                app:boxCornerRadiusBottomStart="0dp"
-                app:boxCornerRadiusBottomEnd="0dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietNombreCategoria"
-                    style="@style/textBalance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvIconos3"
-            style="@style/textBalance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Tipo:"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/llTipoCategoria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cbGasto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:text="Necesidad"
-                android:textColor="@color/gris"
-                android:textSize="15sp"
-                android:fontFamily="@font/roboto_regular" />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/cbIngreso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Deseo"
-                android:textColor="@color/gris"
-                android:textSize="15sp"
-                android:fontFamily="@font/roboto_regular" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvIconos"
-            style="@style/textBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Iconos"
-            android:textStyle="bold" />
-
-        <GridLayout
-            android:id="@+id/glIconos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:alignmentMode="alignMargins"
-            android:columnCount="4"
-            android:columnOrderPreserved="false"
-            android:rowOrderPreserved="false" />
-
-        <TextView
-            android:id="@+id/tvColor"
-            style="@style/textBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Color"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/llColores"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAnadirCategoria"
-            style="@style/boton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Añadir" />
-
-    </LinearLayout>
-
-</ScrollView>
->>>>>>> origin/main
-=======
-</ScrollView>
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)

@@ -1,37 +1,17 @@
 package com.app.balance.ui
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.content.Context
-=======
->>>>>>> origin/main
-=======
-import android.content.Context
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-=======
->>>>>>> origin/main
-=======
-import android.widget.Switch
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 import androidx.fragment.app.Fragment
 import com.app.balance.R
 
 class ConfiguracionFragment : Fragment() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     private lateinit var swNotificaciones: Switch
     private lateinit var swTemaOscuro: Switch
@@ -107,12 +87,5 @@ class ConfiguracionFragment : Fragment() {
         }
         // Recrear la actividad para aplicar el tema
         requireActivity().recreate()
-<<<<<<< HEAD
-=======
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_configuracion, container, false)
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     }
 }

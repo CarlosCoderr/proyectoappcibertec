@@ -1,48 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
-<<<<<<< HEAD
-=======
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:id="@+id/main"
-    android:background="@color/white"
-    tools:context=".TransaccionGastoActivity">
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-<<<<<<< HEAD
-<<<<<<< HEAD
         android:padding="24dp">
-=======
-        android:padding="20dp">
->>>>>>> origin/main
-=======
-        android:padding="24dp">
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
@@ -53,29 +25,10 @@
                 android:src="@drawable/ic_arrow_back"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Regresar"/>
-<<<<<<< HEAD
-=======
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btnBackGasto"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp"
-                android:src="@drawable/ic_arrow_back" />
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
                 android:layout_weight="1"
                 android:text="Añadir transacciones"
                 android:textSize="24sp"
@@ -136,84 +89,12 @@
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:layout_marginTop="24dp"/>
-<<<<<<< HEAD
-=======
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:text="Añadir transacciones"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:textStyle="normal"
-                android:fontFamily="sans-serif-medium"/>
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/etMonto"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_background_gold"
-                android:gravity="center"
-                android:hint="0"
-                android:inputType="numberDecimal"
-                android:maxLength="9"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gris"
-                android:textSize="28sp"
-                android:padding="10dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvDivisa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="PEN"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Categorías"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            android:fontFamily="sans-serif-medium"/>
-
-        <TextView
-            android:id="@+id/tvCategoriaSeleccionada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Selecciona una categoría"
-            android:textColor="@color/gris"
-            android:textSize="14sp" />
->>>>>>> origin/main
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategorias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
             android:clipToPadding="false"/>
 
         <TextView
@@ -292,120 +173,4 @@
 
     </LinearLayout>
 
-<<<<<<< HEAD
 </ScrollView>
-=======
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:overScrollMode="never"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp" />
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="24dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fecha de gasto: "
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:fontFamily="sans-serif-medium"/>
-
-            <TextView
-                android:id="@+id/tvFechaGasto"
-                android:layout_width="0dp"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/et_background_gold"
-                android:clickable="true"
-                android:focusable="true"
-                android:drawableEnd="@android:drawable/ic_menu_my_calendar"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/black"
-                android:padding="12dp"
-                android:text="Ingresa una fecha"
-                android:textColor="@color/gris"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Comentario"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            android:fontFamily="sans-serif-medium"/>
-
-        <EditText
-            android:id="@+id/etComentario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/et_background_gold"
-            android:gravity="top"
-            android:hint="Ingrese un comentario de gasto"
-            android:inputType="textMultiLine"
-            android:maxLength="50"
-            android:minLines="3"
-            android:padding="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gris" />
-
-        <TextView
-            android:id="@+id/tvContadorComentario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="end"
-            android:text="0/50"
-            android:textColor="@color/gris"
-            android:textSize="12sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAnadirTransaccion"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="AÑADIR GASTO"
-            style="@style/boton" />
-
-        <TextView
-            android:id="@+id/tvListadoTransacciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTransacciones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:nestedScrollingEnabled="false"
-            android:overScrollMode="never"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-</ScrollView>
->>>>>>> origin/main
-=======
-</ScrollView>
->>>>>>> 589dd31 (Desarollo de divisas, balance, Desarollo de header con menu, Dashboard fragment, gastos fragment, balance fragment, ademas de creacion de categoria Activity y transaccion gasto, persistencia de datos y CRUD completo,)
