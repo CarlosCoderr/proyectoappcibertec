@@ -47,6 +47,7 @@ class InicioActivity : AppCompatActivity() {
     private lateinit var tvHeaderName: TextView
     private lateinit var ivHeaderFlag: ImageView
     private lateinit var tvHeaderEmail: TextView
+    private lateinit var ivHeaderLogo: TextView
 
     private var codigoDivisa = ""
     private var balanceActual = 0.0
@@ -87,6 +88,7 @@ class InicioActivity : AppCompatActivity() {
         btnEditBalance = findViewById(R.id.btnEditBalance)
         btnMenu = findViewById(R.id.btnMenu)
         layoutCentro = findViewById(R.id.layoutCentro)
+        ivHeaderLogo = findViewById(R.id.ivHeaderLogo)
     }
 
     private fun initHeaderViews() {
@@ -185,9 +187,11 @@ class InicioActivity : AppCompatActivity() {
         if (mostrar) {
             layoutCentro.visibility = View.VISIBLE
             btnEditBalance.visibility = View.VISIBLE
+            ivHeaderLogo.visibility = View.GONE
         } else {
             layoutCentro.visibility = View.GONE
             btnEditBalance.visibility = View.GONE
+            ivHeaderLogo.visibility = View.VISIBLE
         }
     }
 
