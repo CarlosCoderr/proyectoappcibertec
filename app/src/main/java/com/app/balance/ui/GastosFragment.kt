@@ -2,6 +2,7 @@ package com.app.balance.ui
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.balance.InicioActivity
 import com.app.balance.R
+import com.app.balance.TransaccionGastoActivity
 import com.app.balance.adapters.GastosAdapter
 import com.app.balance.data.AppDatabaseHelper
 import com.app.balance.data.dao.DivisaDAO
@@ -80,6 +82,13 @@ class GastosFragment : Fragment(R.layout.fragment_gastos), BalanceUpdateListener
             },
             onEliminarClick = { transaccion ->
                 mostrarDialogoEliminarGasto(transaccion)
+            },
+            onEditarClick = { transaccion ->
+                // Lanzar Activity de edición pasando el id de la transacción
+                val intent = Intent(requireContext(), TransaccionGastoActivity::class.java)
+                intent.putExtra("EXTRA_EDITAR", true)
+                intent.putExtra("EXTRA_TRANSACCION_ID", transaccion.transaccion.id)
+                startActivity(intent)
             }
         )
         rvGastos.layoutManager = LinearLayoutManager(requireContext())

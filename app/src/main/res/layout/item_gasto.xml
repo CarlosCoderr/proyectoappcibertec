@@ -84,23 +84,44 @@
                 android:textColor="@android:color/darker_gray"
                 android:layout_marginTop="4dp"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEliminarGasto"
+            <!-- Botones lado a lado: editar (izquierda) y eliminar (derecha) -->
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="Eliminar"
-                android:textSize="11sp"
-                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:icon="@android:drawable/ic_menu_delete"
-                app:iconSize="16dp"
-                app:iconTint="@android:color/white"
-                app:iconGravity="start"
-                app:cornerRadius="18dp"
-                app:backgroundTint="@android:color/holo_red_dark"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                style="@style/Widget.Material3.Button.TonalButton"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical|end">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEditarGasto"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:contentDescription="Editar gasto"
+                    app:icon="@drawable/ic_edit_balance"
+                    app:iconSize="20dp"
+                    app:iconTint="@color/negro"
+                    app:iconPadding="0dp"
+                    app:cornerRadius="18dp"
+                    app:backgroundTint="@color/balance"
+                    android:padding="7dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEliminarGasto"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Eliminar gasto"
+                    app:icon="@android:drawable/ic_menu_delete"
+                    app:iconSize="20dp"
+                    app:iconTint="@android:color/white"
+                    app:iconPadding="0dp"
+                    app:cornerRadius="18dp"
+                    app:backgroundTint="@android:color/holo_red_dark"
+                    android:padding="7dp"
+                    style="@style/Widget.MaterialComponents.Button" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
